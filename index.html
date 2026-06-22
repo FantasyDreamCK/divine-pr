@@ -1,0 +1,3241 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神明公關：誰是蹟優股 —— 台灣首款願力策略桌遊募資</title>
+    <meta name="description" content="台灣首款將「願力世界觀」與「現代宮廟行銷」結合的策略經營桌遊。神使翹班、代班上崗，六大神明、易經六十四卦——募資中，限量典藏。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== DESIGN TOKENS ===== */
+        :root {
+            --black:          #07040a;
+            --deep:           #0e080f;
+            --surface:        #140d18;
+            --surface-2:      #1c1124;
+            --border:         rgba(180, 120, 40, 0.18);
+            --border-gold:    rgba(212, 168, 80, 0.5);
+
+            --gold-dim:       #8b6914;
+            --gold:           #c9933a;
+            --gold-bright:    #e8b84b;
+            --gold-shine:     #f5d070;
+            --gold-glow:      rgba(232, 184, 75, 0.35);
+
+            --red-deep:       #3a0a0a;
+            --red:            #7c1c1c;
+            --red-bright:     #c0392b;
+
+            --cyan:           #00c8d4;
+            --cyan-dim:       rgba(0, 200, 212, 0.15);
+            --pink:           #e040a0;
+            --pink-dim:       rgba(224, 64, 160, 0.15);
+
+            --text:           #f0e6d0;
+            --text-dim:       #a89070;
+            --text-muted:     #5a4a38;
+
+            --radius:         12px;
+            --radius-lg:      20px;
+            --radius-xl:      28px;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: var(--gold-bright); color: var(--black); }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--deep); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+        /* ===== NOISE OVERLAY ===== */
+        /*
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+        */
+
+        /* ===== TYPOGRAPHY ===== */
+        .serif { font-family: 'Noto Serif TC', serif; }
+        .sans  { font-family: 'Inter', sans-serif; }
+
+        h1, h2, h3 { font-family: 'Noto Serif TC', serif; line-height: 1.2; }
+
+        /* ===== UTILITY ===== */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .section-pad { padding: 100px 0; }
+        .text-gold { color: var(--gold-bright); }
+        .text-dim  { color: var(--text-dim); }
+
+        /* ===== ORNAMENTAL LINE ===== */
+        .ornament {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--gold-dim);
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+        }
+
+        /* ===== GLOW FX ===== */
+        .glow-gold { text-shadow: 0 0 20px rgba(232, 184, 75, 0.6), 0 0 60px rgba(232, 184, 75, 0.2); }
+        .glow-red  { box-shadow: 0 0 30px rgba(192, 57, 43, 0.4), inset 0 0 30px rgba(192, 57, 43, 0.05); }
+        .glow-cyan { text-shadow: 0 0 12px var(--cyan), 0 0 30px rgba(0,200,212,0.3); }
+
+        /* ===== BADGE ===== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--border-gold);
+            background: rgba(201, 147, 58, 0.08);
+            color: var(--gold-bright);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 60%, var(--gold-shine) 100%);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--gold-glow); }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary:active { transform: translateY(0); }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 30px;
+            background: transparent;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-gold);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover { background: rgba(201, 147, 58, 0.1); border-color: var(--gold); color: var(--gold-bright); }
+
+        .btn-red {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
+            color: var(--text);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.06em;
+            border-radius: var(--radius);
+            border: 1px solid rgba(192,57,43,0.4);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-red:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(192,57,43,0.5); filter: brightness(1.15); }
+
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(28,17,36,0.9), rgba(14,8,15,0.95));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+        }
+
+        /* ===== SECTION HEADING ===== */
+        .section-heading { text-align: center; margin-bottom: 64px; }
+        .section-heading h2 { font-size: clamp(28px, 4vw, 44px); color: var(--gold-bright); margin-bottom: 12px; }
+        .section-heading p { color: var(--text-dim); font-size: 15px; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50%       { transform: translateY(-12px) rotate(1deg); }
+        }
+        @keyframes breatheGold {
+            0%, 100% { box-shadow: 0 0 10px rgba(232,184,75,0.2), 0 0 30px rgba(232,184,75,0.05); border-color: var(--border-gold); }
+            50%       { box-shadow: 0 0 25px rgba(232,184,75,0.55), 0 0 60px rgba(232,184,75,0.18); border-color: var(--gold-bright); }
+        }
+        @keyframes breatheCyan {
+            0%, 100% { text-shadow: 0 0 8px var(--cyan), 0 0 20px rgba(0,200,212,0.3); }
+            50%       { text-shadow: 0 0 18px var(--cyan), 0 0 50px rgba(0,200,212,0.7); }
+        }
+        @keyframes spinSlow { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-ring {
+            0%   { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.7); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes cupBounce {
+            0%, 100% { transform: none; }
+            50%       { transform: translateY(-6px) scale(1.05); }
+        }
+
+        .anim-float     { animation: float 6s ease-in-out infinite; }
+        .anim-breathe   { animation: breatheGold 3s ease-in-out infinite; }
+        .anim-cyan      { animation: breatheCyan 3.5s ease-in-out infinite; }
+        .anim-fade-up   { animation: fadeUp 0.8s ease-out both; }
+
+        /* ===== HEADER ===== */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            padding: 0 40px;
+            background: rgba(7, 4, 10, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(180, 120, 40, 0.12);
+            transition: background-color 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+        }
+        #site-header.scrolled {
+            background: rgba(7, 4, 10, 0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .logo-mark {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--gold-bright);
+            letter-spacing: 0.05em;
+            text-decoration: none;
+        }
+        .logo-sub {
+            font-size: 10px;
+            border: 1px solid var(--border-gold);
+            color: var(--gold);
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.1em;
+            margin-left: 10px;
+        }
+        .site-nav { display: flex; gap: 32px; }
+        .site-nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .site-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0; right: 0;
+            height: 1px;
+            background: var(--gold-bright);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .site-nav a:hover { color: var(--gold-bright); }
+        .site-nav a:hover::after { transform: scaleX(1); }
+
+        /* ===== HERO ===== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Multi-layer background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 70% at 70% 50%, rgba(58, 10, 10, 0.38) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 60% at 20% 80%, rgba(0, 30, 40, 0.25) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 40% at 50% 10%, rgba(100, 60, 0, 0.12) 0%, transparent 50%),
+                var(--black);
+        }
+
+        /* Rotating bagua ring */
+        .hero-ring {
+            position: absolute;
+            top: 50%;
+            left: 62%;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 147, 58, 0.08);
+            animation: spinSlow 100s linear infinite;
+        }
+        .hero-ring::before {
+            content: '';
+            position: absolute;
+            inset: 40px;
+            border-radius: 50%;
+            border: 1px dashed rgba(201, 147, 58, 0.06);
+        }
+        .hero-ring::after {
+            content: '';
+            position: absolute;
+            inset: 80px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 147, 58, 0.04);
+        }
+
+        /* Hero grid dots */
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(201,147,58,0.07) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse 80% 80% at center, black, transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            padding: 120px 40px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-left { space-y: 24px; }
+        .hero-eyebrow { margin-bottom: 24px; }
+        .hero-title {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            flex-wrap: wrap;
+            font-size: clamp(22px, 2.8vw, 36px); /* 縮小大約 40%，不與標準字搶風頭 */
+            font-weight: 800;
+            line-height: 1.3;
+            margin-top: 10px;
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+        .hero-title-main {
+            font-size: 1.1em;
+            color: var(--text);
+            font-weight: 800;
+            display: inline-block;
+        }
+        .hero-title-sub {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-shine) 50%, var(--gold) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        .hero-desc {
+            color: var(--text-dim);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 480px;
+            margin-bottom: 36px;
+        }
+
+        .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            padding-top: 36px;
+            border-top: 1px solid var(--border);
+            max-width: 400px;
+        }
+        .stat-item { text-align: center; padding: 0 20px; }
+        .stat-item:not(:last-child) { border-right: 1px solid var(--border); }
+        .stat-num {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--gold-bright);
+            display: block;
+        }
+        .stat-lbl { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 3px; display: block; }
+
+        /* Hero visual card */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-img-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+        }
+        .hero-img-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(201,147,58,0.2) 0%, transparent 70%);
+            pointer-events: none;
+            animation: breatheGold 4s ease-in-out infinite;
+        }
+        /* Gold corner frame */
+        .hero-img-frame {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 60px rgba(201,147,58,0.15);
+            animation: float 7s ease-in-out infinite;
+        }
+        .hero-img-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+            z-index: 10;
+        }
+        .hero-img-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(7,4,10,0.9) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-main-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            display: block;
+            filter: saturate(0.85) contrast(1.05);
+        }
+        /* Overlay info on hero img */
+        .hero-img-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            z-index: 3;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        .hero-img-tag {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.25em;
+            padding: 3px 10px;
+            background: var(--gold-bright);
+            color: var(--black);
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        /* Mini stats floating card */
+        .hero-stats-float {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            z-index: 10;
+            background: rgba(14,8,15,0.92);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius);
+            padding: 14px 20px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+        }
+        .stat-mini { text-align: center; }
+        .stat-mini-num {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--gold-bright);
+            display: block;
+        }
+        .stat-mini-lbl { font-size: 9px; color: var(--text-muted); letter-spacing: 0.05em; display: block; margin-top: 2px; }
+        .stat-mini-sep { width: 1px; background: var(--border); }
+
+        /* Play button overlay */
+        .hero-play-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+        }
+        .video-play-btn {
+            position: relative;
+            z-index: 2;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold-bright) 0%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .video-play-btn::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-bright);
+            animation: pulse-ring 2s cubic-bezier(0.4,0,0.6,1) infinite;
+        }
+        .video-play-btn:hover { transform: scale(1.1); box-shadow: 0 0 40px var(--gold-glow); }
+        .video-play-btn svg { margin-left: 4px; }
+
+        /* (legacy, kept for modal) */
+        .video-area {
+            aspect-ratio: 4/5;
+            background: linear-gradient(145deg, #0a050e, #140a08);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(201,147,58,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .video-area-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(120,30,30,0.3), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(0,50,60,0.2), transparent 50%);
+        }
+        .video-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.25em;
+            padding: 3px 8px;
+            background: var(--gold-bright);
+            color: var(--black);
+            border-radius: 4px;
+        }
+        .video-label {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .video-label h3 { font-size: 16px; color: var(--text); margin-bottom: 6px; }
+        .video-label p { font-size: 11px; color: var(--text-dim); }
+
+        /* ===== ORIGIN SECTION ===== */
+        #origin {
+            background: linear-gradient(180deg, transparent 0%, rgba(14,8,15,0.6) 50%, transparent 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .chat-window {
+            position: fixed;
+            top: 160px;
+            right: 30px;
+            width: 360px;
+            height: 480px;
+            z-index: 11000;
+            background: rgba(12, 8, 18, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(232,184,75,0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            resize: both;
+            min-width: 300px;
+            min-height: 350px;
+            max-width: 550px;
+            max-height: 700px;
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+        }
+        .chat-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .chat-header {
+            background: var(--surface-2);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-dim), var(--red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text);
+            font-family: 'Noto Serif TC', serif;
+            flex-shrink: 0;
+        }
+        .chat-group-name { font-size: 13px; font-weight: 600; color: var(--text); }
+        .chat-online { font-size: 10px; color: #4ade80; margin-top: 2px; }
+        .chat-body {
+            background: var(--deep);
+            padding: 20px;
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .chat-body::-webkit-scrollbar { width: 4px; }
+        .chat-body::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+        .msg-row { display: flex; align-items: flex-end; gap: 8px; }
+        .msg-row.sent { flex-direction: row-reverse; }
+        .msg-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Noto Serif TC', serif;
+        }
+        .bubble {
+            max-width: 72%;
+            padding: 10px 14px;
+            font-size: 13px;
+            line-height: 1.6;
+            border-radius: 16px;
+        }
+        .bubble-recv {
+            background: var(--surface-2);
+            color: var(--text);
+            border-radius: 4px 16px 16px 16px;
+            border: 1px solid var(--border);
+        }
+        .bubble-sent {
+            background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+            color: var(--black);
+            border-radius: 16px 4px 16px 16px;
+        }
+        .bubble-sender { display: block; font-size: 9px; color: var(--gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .chat-footer {
+            background: var(--surface-2);
+            padding: 12px 16px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid var(--border);
+        }
+        .chat-input {
+            flex: 1;
+            background: var(--deep);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: var(--text);
+            font-size: 12px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .chat-input:focus { border-color: var(--gold); }
+        .chat-input::placeholder { color: var(--text-muted); }
+        .chat-send {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--gold);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .chat-send:hover { background: var(--gold-bright); transform: scale(1.05); }
+
+        /* ===== ATMOSPHERE BANNER ===== */
+        .atmos-banner {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .atmos-banner-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.6) brightness(0.45);
+        }
+        .atmos-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, var(--black) 0%, transparent 25%, transparent 75%, var(--black) 100%),
+                linear-gradient(135deg, rgba(58,10,10,0.4) 0%, transparent 50%, rgba(0,30,40,0.3) 100%);
+        }
+        .atmos-banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .atmos-banner-content h3 {
+            font-size: clamp(20px, 3vw, 32px);
+            color: var(--gold-bright);
+            text-shadow: 0 0 40px rgba(232,184,75,0.5);
+            margin-bottom: 8px;
+        }
+        .atmos-banner-content p {
+            font-size: 14px;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+        }
+        .atmos-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 16px auto;
+        }
+
+        /* ===== CHARACTER CARDS ===== */
+        #characters { background: var(--black); }
+
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .char-card {
+            border-radius: var(--radius-lg);
+            padding: 0;
+            background: linear-gradient(145deg, var(--surface), var(--deep));
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+        .char-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(201,147,58,0.06) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .char-card:hover { transform: translateY(-6px); border-color: rgba(201,147,58,0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(201,147,58,0.08); }
+        .char-card:hover::after { opacity: 1; }
+
+        /* Accent corner */
+        .char-card-body::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 60px; height: 60px;
+            background: linear-gradient(225deg, rgba(201,147,58,0.12) 0%, transparent 60%);
+            border-radius: 0 var(--radius-lg) 0 0;
+            pointer-events: none;
+        }
+
+        /* Character portrait area */
+        .char-portrait {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        .char-portrait-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: brightness(0.95);
+            transition: filter 0.4s, transform 0.5s;
+        }
+        .char-card:hover .char-portrait-img {
+            filter: brightness(1.05) contrast(1.02);
+            transform: scale(1.05);
+        }
+        .char-portrait-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%);
+        }
+        .char-portrait-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 50px;
+            letter-spacing: 0.08em;
+            border: 1px solid;
+        }
+
+        .char-card-body {
+            padding: 18px 20px 20px;
+            position: relative;
+        }
+
+        .char-tags { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .char-type-badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .char-affinity { font-size: 11px; font-weight: 700; }
+
+        .char-name { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+
+        /* legacy placeholder - hidden now */
+        .char-img-placeholder { display: none; }
+        .char-img-icon { font-size: 36px; position: relative; z-index: 1; }
+        .char-img-hint { font-size: 9px; color: var(--text-muted); margin-top: 6px; position: relative; z-index: 1; }
+        .char-img-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, var(--glow-clr, rgba(201,147,58,0.06)) 0%, transparent 70%);
+        }
+
+        .char-desc { font-size: 12px; color: var(--text-dim); line-height: 1.75; }
+        .char-desc strong { color: var(--gold-bright); font-weight: 600; }
+
+        /* Special cards (蘇映安 & 周宛辭) */
+        .char-card.special-cyan { --accent: var(--cyan); border-color: rgba(0,200,212,0.2); }
+        .char-card.special-cyan:hover { border-color: rgba(0,200,212,0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(0,200,212,0.1); }
+        .char-card.special-pink { --accent: var(--pink); border-color: rgba(224,64,160,0.2); }
+        .char-card.special-pink:hover { border-color: rgba(224,64,160,0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(224,64,160,0.1); }
+
+        /* ===== FEATURES SECTION ===== */
+        #features { background: linear-gradient(180deg, var(--black) 0%, var(--deep) 50%, var(--black) 100%); }
+
+        /* Scene banner (between sections) */
+        .scene-banner {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        .scene-banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.5) brightness(0.35);
+        }
+        .scene-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--black) 0%, transparent 30%, transparent 70%, var(--black) 100%);
+        }
+        .scene-banner-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
+        }
+        .scene-banner-text .ornament { max-width: 400px; }
+        .scene-banner-text h3 {
+            font-size: clamp(22px, 3.5vw, 40px);
+            color: var(--text);
+            font-family: 'Noto Serif TC', serif;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+        }
+        .scene-banner-text h3 span { color: var(--gold-bright); }
+
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .feature-card {
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201,147,58,0.04) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .feature-card:hover { border-color: var(--border-gold); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(201,147,58,0.15), rgba(201,147,58,0.05));
+            border: 1px solid rgba(201,147,58,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .feature-content h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .feature-content p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+
+        /* ===== CARD PREVIEW ===== */
+        #preview { background: var(--black); }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+
+        /* Paper card style */
+        .paper-card {
+            aspect-ratio: 5/7;
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, #f8f0dc, #ede0bf);
+            border: 2px solid #8b5c1a;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6), inset 0 0 20px rgba(139,92,26,0.06);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+        .paper-card:hover { transform: translateY(-10px) rotateX(4deg) rotateY(-4deg); box-shadow: 0 24px 60px rgba(0,0,0,0.8), 0 0 30px rgba(201,147,58,0.3); }
+        .paper-card::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(139,92,26,0.3);
+            border-radius: calc(var(--radius) - 4px);
+            pointer-events: none;
+        }
+        /* Red header strip */
+        .paper-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b1a1a, #c0392b, #8b1a1a);
+        }
+
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-hex { font-size: 10px; font-weight: 700; color: #6b3a12; font-family: 'Noto Serif TC', serif; }
+        .card-diff {
+            font-size: 9px;
+            padding: 2px 6px;
+            background: #8b1a1a;
+            color: #f0d090;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .card-mid { flex: 1; padding: 10px 0; }
+        .card-title { font-size: 16px; font-weight: 900; color: #3a1205; margin-bottom: 6px; font-family: 'Noto Serif TC', serif; }
+        .card-quote { font-size: 10px; color: #5a3a20; line-height: 1.6; font-style: italic; }
+        .card-req { font-size: 9px; color: #7a5030; border-top: 1px solid rgba(139,92,26,0.2); padding-top: 6px; margin-top: 6px; }
+        .card-passive {
+            background: linear-gradient(135deg, #8b1a1a, #6b1010);
+            color: #f0d090;
+            text-align: center;
+            padding: 6px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        /* Sealed card */
+        .sealed-card {
+            aspect-ratio: 5/7;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: all 0.4s;
+        }
+        .sealed-card:hover { border-color: var(--border-gold); transform: translateY(-6px); }
+        .sealed-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,147,58,0.02) 20px, rgba(201,147,58,0.02) 22px);
+        }
+        .sealed-lock {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background: rgba(201,147,58,0.06);
+        }
+        .sealed-name { font-size: 13px; color: var(--gold-bright); font-weight: 700; font-family: 'Noto Serif TC', serif; }
+        .sealed-hint { font-size: 10px; color: var(--text-muted); text-align: center; padding: 0 20px; line-height: 1.5; }
+
+        /* ===== DIVINATION SECTION ===== */
+        #divination {
+            background: linear-gradient(180deg, var(--black) 0%, rgba(20,10,5,0.8) 50%, var(--black) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .divination-panel {
+            max-width: 540px;
+            margin: 0 auto;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-gold);
+            background: linear-gradient(145deg, var(--surface), var(--deep));
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            animation: breatheGold 4s ease-in-out infinite;
+        }
+        .divination-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+        }
+        .divination-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+        .meta-box { text-align: left; }
+        .meta-box.right { text-align: right; }
+        .meta-lbl { font-size: 9px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+        .meta-val { font-size: 20px; font-weight: 900; font-family: 'Noto Serif TC', serif; }
+        .meta-val.gold { color: var(--gold-bright); }
+        .meta-val.green { color: #4ade80; }
+
+        .cups-display {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            padding: 24px 0;
+        }
+
+        /* Jiaobeii (筊杯) */
+        .jiao-cup {
+            width: 90px;
+            height: 42px;
+            border-radius: 90px 90px 0 0;
+            background: radial-gradient(circle at 35% 35%, #b91c1c 20%, #7f1d1d 60%, #4a0a0a 100%);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.15), 0 0 12px rgba(120,30,30,0.4);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+        }
+        .jiao-cup:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.15), 0 0 20px rgba(180,50,50,0.5); }
+        .jiao-cup::after {
+            content: '';
+            position: absolute;
+            top: 6px; left: 16px;
+            width: 18px; height: 8px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 50%;
+            transform: rotate(-15deg);
+        }
+        .jiao-cup.flipped {
+            transform: scaleY(-1);
+            background: radial-gradient(circle at 35% 35%, #581c1c 20%, #3b0707 60%, #1a0303 100%);
+        }
+        .jiao-cup.rolling {
+            animation: cupBounce 0.15s ease-in-out 4;
+        }
+
+        .divination-result {
+            text-align: center;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .divination-result-text {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Noto Serif TC', serif;
+            color: var(--text);
+        }
+        .divination-hint { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+
+        /* ===== FUNDING SECTION ===== */
+        #pledge { background: var(--black); }
+
+        .funding-bar-wrap { max-width: 600px; margin: 0 auto 60px; }
+        .funding-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); margin-bottom: 10px; }
+        .funding-meta .amt { font-size: 16px; font-weight: 700; color: var(--gold-bright); font-family: 'Noto Serif TC', serif; }
+        .progress-track {
+            height: 10px;
+            background: var(--surface-2);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .progress-fill {
+            height: 100%;
+            width: 68%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--red) 0%, var(--gold-dim) 50%, var(--gold-bright) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+        }
+
+        .milestones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+        .milestone {
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            gap: 8px;
+        }
+        .milestone.done { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); color: #4ade80; }
+        .milestone.pending { background: rgba(201,147,58,0.05); border: 1px solid rgba(201,147,58,0.2); color: var(--gold); }
+
+        /* Pledge tiers */
+        .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .tier-card {
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .tier-card:hover { transform: translateY(-4px); border-color: var(--border-gold); box-shadow: 0 16px 50px rgba(0,0,0,0.5); }
+        .tier-card.featured {
+            border: 2px solid var(--gold-bright);
+            background: linear-gradient(145deg, rgba(30,20,40,0.95), rgba(20,12,15,0.95));
+            box-shadow: 0 0 40px rgba(201,147,58,0.12);
+        }
+        .tier-card.featured:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 50px rgba(201,147,58,0.2); }
+        .tier-badge-float {
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold-bright);
+            color: var(--black);
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 0 0 8px 8px;
+        }
+        .tier-label { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+        .tier-name { font-size: 20px; font-weight: 700; color: var(--text); }
+        .tier-price { font-size: 36px; font-weight: 900; color: var(--gold-bright); font-family: 'Noto Serif TC', serif; line-height: 1; }
+        .tier-price-orig { font-size: 13px; color: var(--text-muted); text-decoration: line-through; margin-left: 6px; font-family: 'Inter', sans-serif; }
+        .tier-desc { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+        .tier-cta { margin-top: auto; }
+
+        /* ===== SUBSCRIBE SECTION ===== */
+        #subscribe {
+            background: linear-gradient(135deg, var(--red-deep) 0%, var(--surface) 50%, rgba(0,20,25,0.6) 100%);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .subscribe-inner { max-width: 500px; margin: 0 auto; }
+        .subscribe-inner h2 { font-size: 32px; color: var(--gold-bright); margin-bottom: 12px; }
+        .subscribe-inner p { color: var(--text-dim); font-size: 14px; line-height: 1.7; margin-bottom: 32px; }
+        .subscribe-form { display: flex; gap: 12px; }
+        .subscribe-input {
+            flex: 1;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 14px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .subscribe-input:focus { border-color: var(--gold); }
+        .subscribe-input::placeholder { color: var(--text-muted); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 36px 40px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .footer-copy { font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+        .footer-copy a { color: var(--gold-dim); text-decoration: none; }
+        .footer-copy a:hover { color: var(--gold); }
+
+        /* Divider ornament */
+        .gold-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 30%, var(--gold) 50%, var(--gold-dim) 70%, transparent 100%);
+            margin: 8px 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-content { grid-template-columns: 1fr; padding: 100px 20px 60px; text-align: center; }
+            .hero-visual { display: none; }
+            .hero-stats { margin: 0 auto; }
+            .hero-cta { justify-content: center; }
+            .char-grid { grid-template-columns: 1fr 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .tiers-grid { grid-template-columns: 1fr; }
+            .milestones { grid-template-columns: 1fr; }
+            .site-nav, .header-cta { display: none; }
+            .atmos-banner { height: 280px; }
+            .scene-banner { height: 200px; }
+            .hero-stats-float { display: none; }
+        }
+        @media (max-width: 600px) {
+            .char-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .subscribe-form { flex-direction: column; }
+        }
+
+        /* ===== VISUAL INTRO SECTION STYLE (V3.3) ===== */
+        #visual-intro {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: var(--black);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 高級漸層覆蓋層：確保頂部導航與底部指引的清晰度 */
+        #visual-intro::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom, 
+                rgba(7, 4, 10, 0.65) 0%, 
+                rgba(7, 4, 10, 0) 30%, 
+                rgba(7, 4, 10, 0) 70%, 
+                rgba(7, 4, 10, 0.8) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+        .intro-fullscreen-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 65%;
+            z-index: 1;
+        }
+        .intro-scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dim);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+        .intro-scroll-hint:hover {
+            color: var(--gold-bright);
+        }
+        .arrow-down {
+            stroke: var(--gold-bright);
+        }
+
+        /* ===== ENVOY GALLERY SECTION ===== */
+        #envoy-gallery {
+            scroll-margin-top: 68px;
+            position: relative;
+            background: var(--black);
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+            padding: 80px 0 140px 0; /* extra padding at bottom for floating card */
+        }
+        .gallery-bg-blur-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1; /* 放到底層作為背景，避免 Stacking Context 限制導致遮擋 active 卡片 */
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0; /* Invisible by default */
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        /* Fade in overlay background container only during active hover or lock state */
+        #envoy-gallery.has-hover .gallery-bg-blur-container,
+        #envoy-gallery.is-locked .gallery-bg-blur-container {
+            opacity: 1;
+        }
+        .gallery-bg-blur-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(7, 4, 10, 0.48); /* Vignette blending backdrop */
+            z-index: 2;
+            pointer-events: none;
+        }
+        .gallery-bg-blur {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.01);
+            filter: blur(2px) brightness(0.55); /* 降低模糊、微調亮度，展現大圖的震撼細節 */
+            transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .gallery-bg-blur.active-bg {
+            opacity: 0.9; /* 提高大圖的投影清晰度與透明度，更具視覺震撼感 */
+            transform: scale(1.05); /* Echo effect: zoom in slightly */
+        }
+        .gallery-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(7, 4, 10, 0.82) 100%);
+            z-index: 2; /* 位於背景大圖之上，跑馬燈底片之下，做為暗角過渡 */
+            pointer-events: none;
+        }
+        #envoy-gallery .container {
+            position: relative;
+            z-index: 4;
+        }
+        
+        /* Marquee wrapper */
+        .gallery-marquee-container {
+            position: relative;
+            z-index: 3; /* 提高跑馬燈整體層級，高於背景大圖與暗角 */
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 40px 0;
+            overflow: hidden;
+            width: 100%;
+        }
+        .marquee-row {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            will-change: transform;
+        }
+        .marquee-row.marquee-left {
+            animation: marquee-left 55s linear infinite;
+        }
+        .marquee-row.marquee-right {
+            animation: marquee-right 48s linear infinite;
+        }
+        
+        /* Paused state when hovered/locked */
+        #envoy-gallery.has-hover .marquee-row {
+            animation-play-state: paused !important;
+        }
+        
+        /* Keyframes */
+        @keyframes marquee-left {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes marquee-right {
+            0% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+        
+        /* Gallery item wrapper (static bounds to avoid hover flickering) */
+        .gallery-item-wrapper {
+            flex-shrink: 0;
+            width: 300px;
+            aspect-ratio: 16/10;
+            position: relative;
+            z-index: 2; 
+        }
+        /* Raise hovered/locked cards above background container to stand out */
+        .gallery-item-wrapper:hover,
+        .gallery-item-wrapper:has(.locked-active) {
+            z-index: 10;
+        }
+        .gallery-item {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(212, 168, 80, 0.15);
+            background: var(--surface-2);
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        opacity 0.5s ease,
+                        filter 0.5s ease,
+                        border-color 0.5s ease;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(7,4,10,0.85) 100%);
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        
+        /* Tag styling */
+        .gallery-item-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            z-index: 5;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(7,4,10,0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: all 0.3s;
+        }
+        .gallery-item-tag.badge-ni { color: #c4b5fd; border-color: rgba(196,181,253,0.3); }
+        .gallery-item-tag.badge-liu { color: #fca5a5; border-color: rgba(252,165,165,0.3); }
+        .gallery-item-tag.badge-zhou { color: #f472b6; border-color: rgba(244,114,182,0.3); }
+        .gallery-item-tag.badge-lin { color: #fbcfe8; border-color: rgba(251,207,232,0.3); }
+        .gallery-item-tag.badge-wen { color: #fde047; border-color: rgba(253,224,71,0.3); }
+        .gallery-item-tag.badge-su { color: #a5f3fc; border-color: rgba(165,243,252,0.3); }
+
+        /* Focus Dim & Zoom effects */
+        #envoy-gallery.has-hover .gallery-item:not(.hovered):not(.locked-active) {
+            opacity: 0.15; /* 大幅降低透明度，透出底層背景大圖，使其他卡片顯得被背景吞噬/蓋住 */
+            filter: blur(5px) grayscale(0.4); /* 加強模糊與灰階度，使其融入背景大圖中 */
+            transform: scale(0.9); /* 稍微縮小，營造深度層次感 */
+        }
+        .gallery-item.hovered, .gallery-item.locked-active {
+            transform: scale(1.18) translateY(-12px) rotate(1deg); /* 更加強的放大與偏移，完全躍於所有投影之上 */
+            border-color: var(--gold-bright);
+            box-shadow: 0 25px 60px rgba(232, 184, 75, 0.6), 0 0 30px rgba(232, 184, 75, 0.35); /* 耀眼的黃金霓虹發光，擺脫投影遮蓋，高亮浮起 */
+            z-index: 10;
+        }
+        .gallery-item.hovered img, .gallery-item.locked-active img {
+            transform: scale(1.08); /* Inner image zooms in more */
+        }
+        
+        /* Disable hover actions when locked on other elements */
+        #envoy-gallery.is-locked .gallery-item {
+            pointer-events: none;
+        }
+        #envoy-gallery.is-locked .gallery-item.locked-active {
+            pointer-events: auto; /* allow clicking to unlock/interact if needed */
+        }
+        
+        /* Floating story card - 去容器化，改為電影字幕風格 (V3.4) */
+        .gallery-floating-card {
+            position: absolute;
+            bottom: 55px; /* 稍微往上調，離底部跑馬燈底片略高，像電影字幕位置 */
+            left: 50%;
+            transform: translate3d(-50%, 15px, 0);
+            width: 85%;
+            max-width: 800px;
+            background: transparent; /* 去除背景 */
+            border: none; /* 去除框線 */
+            box-shadow: none; /* 去除陰影 */
+            border-radius: 0;
+            backdrop-filter: none; /* 去除毛玻璃 */
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: center;
+        }
+        .gallery-floating-card.active {
+            opacity: 1;
+            transform: translate3d(-50%, 0, 0);
+        }
+        .gallery-floating-card.locked {
+            pointer-events: auto;
+        }
+        
+        /* 移除 Close 按鈕原本突兀的樣式，改為極簡且不遮擋文字的電影提示 */
+        .gallery-card-close {
+            position: absolute;
+            top: -55px; /* 移到口白字幕的上方 */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(7, 4, 10, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            display: none;
+            transition: all 0.3s;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        .gallery-card-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.25);
+        }
+        .gallery-floating-card.locked .gallery-card-close {
+            display: block;
+        }
+        
+        /* 去除角色標記與標誌化內容 (V3.4 直接隱藏，讓 JS 正常賦值不報錯即可) */
+        .card-char-badge {
+            display: none !important;
+        }
+        .card-story-title {
+            display: none !important;
+        }
+        
+        /* 電影第一人稱 OS 字幕風格 */
+        .card-story-desc {
+            font-family: 'Noto Serif TC', serif; /* 優雅明體 */
+            font-size: clamp(16px, 1.8vw, 21px); /* 電影字幕感大小 */
+            color: #ffffff; /* 純白字 */
+            /* 強烈的黑色雙重陰影，保證在各種彩色/亮暗大圖上都清晰好讀 */
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.95), 
+                0 0 2px rgba(0, 0, 0, 0.95),
+                0 0 8px rgba(0, 0, 0, 0.6); 
+            line-height: 1.8;
+            letter-spacing: 0.18em; /* 寬字距電影美感 */
+            font-weight: 500;
+            padding: 0 20px;
+            margin: 0;
+            transition: color 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item-wrapper {
+                width: 220px;
+            }
+            .gallery-marquee-container {
+                gap: 16px;
+                padding: 20px 0;
+            }
+            .marquee-row {
+                gap: 14px;
+            }
+            .gallery-floating-card {
+                padding: 0;
+                bottom: 35px;
+                width: 90%;
+            }
+            .card-story-desc {
+                font-size: 13px;
+                line-height: 1.6;
+                letter-spacing: 0.1em;
+            }
+            .gallery-card-close {
+                top: -45px;
+                font-size: 10px;
+                padding: 4px 12px;
+            }
+        }
+
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-content { grid-template-columns: 1fr; padding: 100px 20px 60px; text-align: center; }
+            .hero-visual { display: none; }
+            .hero-stats { margin: 0 auto; }
+            .hero-cta { justify-content: center; }
+            .char-grid { grid-template-columns: 1fr 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .tiers-grid { grid-template-columns: 1fr; }
+            .milestones { grid-template-columns: 1fr; }
+            .site-nav, .header-cta { display: none; }
+            .atmos-banner { height: 280px; }
+            .scene-banner { height: 200px; }
+            .hero-stats-float { display: none; }
+        }
+        @media (max-width: 600px) {
+            .char-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .subscribe-form { flex-direction: column; }
+        }
+
+        /* ===== VISUAL INTRO SECTION STYLE (V3.3) ===== */
+        #visual-intro {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: var(--black);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 高級漸層覆蓋層：確保頂部導航與底部指引的清晰度 */
+        #visual-intro::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom, 
+                rgba(7, 4, 10, 0.65) 0%, 
+                rgba(7, 4, 10, 0) 30%, 
+                rgba(7, 4, 10, 0) 70%, 
+                rgba(7, 4, 10, 0.8) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+        .intro-fullscreen-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 65%;
+            z-index: 1;
+        }
+        .intro-scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dim);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+        .intro-scroll-hint:hover {
+            color: var(--gold-bright);
+        }
+        .arrow-down {
+            stroke: var(--gold-bright);
+        }
+
+
+
+        /* ===== CARD UNIVERSE SECTION ===== */
+        .card-universe-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--black);
+            z-index: 5;
+        }
+        .card-bg-marquee {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            padding: 0 40px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+            mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, transparent 100%);
+        }
+        .card-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            /* Allow height to be determined by content to ensure a mathematically correct 50% scroll loop */
+        }
+        .card-col img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(232, 184, 75, 0.2);
+            flex-shrink: 0; /* Prevent browser from squishing the images in flex layout */
+        }
+        .scroll-up-col {
+            animation: scrollUpCards 60s linear infinite;
+        }
+        .scroll-down-col {
+            animation: scrollDownCards 60s linear infinite;
+        }
+        @keyframes scrollUpCards {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        @keyframes scrollDownCards {
+            0% { transform: translateY(-50%); }
+            100% { transform: translateY(0); }
+        }
+        .card-universe-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--black) 0%, transparent 15%, transparent 85%, var(--black) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .card-universe-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+        .ambient-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(232, 184, 75, 0.1);
+            border: 1px solid rgba(232, 184, 75, 0.3);
+            color: var(--gold-bright);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            margin-top: 10px;
+            backdrop-filter: blur(4px);
+        }
+        
+        /* Characters section narrow layout adjustment */
+        #characters .container {
+            max-width: 1200px;
+        }
+        
+        .char-scroll-hint {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--gold-dim);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-align: center;
+        }
+        .char-scroll-hint:hover {
+            color: var(--gold-bright);
+        }
+        
+        /* ===== FLOATING CHAT BALL ===== */
+        .chat-ball {
+            position: fixed;
+            top: 90px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+            box-shadow: 0 4px 20px rgba(232, 184, 75, 0.4), 0 0 15px rgba(232, 184, 75, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 11000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: chatBallPulse 3s infinite;
+        }
+        .chat-ball:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(232, 184, 75, 0.6), 0 0 25px rgba(232, 184, 75, 0.3);
+        }
+        .chat-ball-icon {
+            font-size: 24px;
+        }
+        .chat-ball-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 10px;
+            border: 2px solid var(--black);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        @keyframes chatBallPulse {
+            0% { box-shadow: 0 4px 20px rgba(232, 184, 75, 0.4), 0 0 0 0 rgba(232, 184, 75, 0.4); }
+            70% { box-shadow: 0 4px 20px rgba(232, 184, 75, 0.4), 0 0 0 15px rgba(232, 184, 75, 0); }
+            100% { box-shadow: 0 4px 20px rgba(232, 184, 75, 0.4), 0 0 0 0 rgba(232, 184, 75, 0); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== VISUAL INTRO SECTION (V3.3) ===== -->
+    <section id="visual-intro">
+        <img class="intro-fullscreen-img" src="assets/img/hero-visual.png" alt="神明公關桌遊主視覺大圖">
+        <div class="intro-scroll-hint" onclick="scrollToMainContent()">
+            <span>滾動進入遊戲</span>
+            <svg class="arrow-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ===== HEADER ===== -->
+    <header id="site-header">
+        <div class="header-inner">
+            <a href="#hero" class="logo-mark" style="display:inline-flex;align-items:center;gap:10px;">
+                <img src="assets/img/logo.png" alt="Logo" style="height:32px;width:auto;object-fit:contain;">
+                神明公關<span class="logo-sub">誰是蹟優股</span>
+            </a>
+            <nav class="site-nav">
+                <a href="#origin">神使因緣</a>
+                <a href="#characters">角色卡牌</a>
+                <a href="#features">遊戲特色</a>
+                <a href="#preview">卡牌封印</a>
+                <a href="#divination">線上擲筊</a>
+                <a href="#pledge">贊助方案</a>
+            </nav>
+            <a href="#subscribe" class="btn-primary header-cta" style="padding:10px 22px;font-size:13px;">立即贊助</a>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-dots"></div>
+        <div class="hero-ring"></div>
+
+        <div class="hero-content">
+            <!-- Left -->
+            <div class="hero-left">
+                <div class="hero-eyebrow">
+                    <span class="badge">🔥 國立聯合大學 專題原創策略桌遊</span>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <img src="assets/img/logo.png" alt="神明公關 標準字" style="max-width:320px; width:100%; height:auto; object-fit:contain; filter:drop-shadow(0 0 15px rgba(232,184,75,0.4));">
+                </div>
+                <h1 class="hero-title">
+                    <span class="hero-title-main">神明公關</span>
+                    <span class="hero-title-sub">誰是蹟優股</span>
+                </h1>
+                <p class="hero-desc">
+                    《神使翹班去度假，直接抓在看連載漫畫的我代班是不是搞錯了什麼》——<br>
+                    台灣首款將「願力世界觀」與「現代宮廟行銷」結合的策略經營桌遊！
+                </p>
+                <div class="hero-cta">
+                    <a href="#divination" class="btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/></svg>
+                        搶先體驗線上擲筊
+                    </a>
+                    <a href="#origin" class="btn-ghost">
+                        深入神使背景
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">2–4</span>
+                        <span class="stat-lbl">遊戲人數</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">60–90</span>
+                        <span class="stat-lbl">分鐘 / 局</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">10+</span>
+                        <span class="stat-lbl">適合年齡</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Hero Key Visual -->
+            <div class="hero-visual">
+                <div class="hero-img-wrap">
+                    <div class="hero-img-frame">
+                        <!-- 主視覺大圖：之後替換為桌遊封面/角色全身插圖 -->
+                        <img
+                            class="hero-main-img"
+                            src="assets/img/box-cover.png"
+                            alt="神明公關桌遊主視覺"
+                            onerror="this.style.background='linear-gradient(145deg,#140d18,#3a0a0a)';this.style.minHeight='480px';"
+                        >
+                        <div class="hero-img-caption">
+                            <span class="hero-img-tag">✦ KEY VISUAL</span>
+                            <button class="video-play-btn" onclick="openVideoModal()" aria-label="播放宣傳影片" style="width:52px;height:52px;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0e080f"><polygon points="5,3 19,12 5,21"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Floating stats card -->
+                    <div class="hero-stats-float">
+                        <div class="stat-mini">
+                            <span class="stat-mini-num">324</span>
+                            <span class="stat-mini-lbl">贊助人數</span>
+                        </div>
+                        <div class="stat-mini-sep"></div>
+                        <div class="stat-mini">
+                            <span class="stat-mini-num">12</span>
+                            <span class="stat-mini-lbl">剩餘天數</span>
+                        </div>
+                        <div class="stat-mini-sep"></div>
+                        <div class="stat-mini">
+                            <span class="stat-mini-num" style="color:#4ade80;">68%</span>
+                            <span class="stat-mini-lbl">達成率</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;z-index:10;">
+            <div style="font-size:10px;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;">Scroll</div>
+            <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--gold-dim),transparent);margin:0 auto;"></div>
+        </div>
+    </section>
+
+    <!-- ===== ATMOSPHERE BANNER (Hero → Origin 過場) ===== -->
+    <div class="atmos-banner">
+        <!-- 氛圍大圖：之後替換為宮廟/神明水墨風場景圖 -->
+        <img class="atmos-banner-img" src="assets/img/atmos-banner.png" alt="宮廟夜景氛圍">
+        <div class="atmos-banner-overlay"></div>
+        <div class="atmos-banner-content">
+            <div class="ornament" style="max-width:360px;margin:0 auto 16px;">神使翹班事件簿</div>
+            <h3 class="serif glow-gold">「我只是個截稿邊緣的漫畫家，</h3>
+            <h3 class="serif glow-gold">怎麼就成了神明代班人？！」</h3>
+            <div class="atmos-divider"></div>
+            <p style="font-size:13px;color:var(--text-dim);letter-spacing:.08em;">— 倪燄，代班第一天的心聲</p>
+        </div>
+    </div>
+
+    <!-- ===== ORIGIN / CHAT ===== -->
+    <section id="origin" class="section-pad">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-heading" style="margin-bottom: 0;">
+                <div class="ornament" style="margin-bottom:20px;">神使因緣</div>
+                <h2>神使翹班去度假？！</h2>
+                <p style="margin-bottom: 0;">
+                    正牌神使集體開溜！只留下一張便條紙，而被強行綁定《代班契約》的你，只能咬牙接下這個神明公關的爛攤子...<br><br>
+                    <strong>💡 點擊網頁右上方的「💬 聊天球」即可展開與翹班神使們的對話框，隨時掌握他們的衝浪動態與代班線索！</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CHARACTERS ===== -->
+    <section id="characters" class="section-pad" style="background:linear-gradient(180deg,var(--black) 0%,var(--deep) 100%);">
+        <div class="container">
+            <div class="section-heading">
+                <div class="ornament" style="margin-bottom:20px;">神使角色</div>
+                <h2>六大神使 × 宿命因緣</h2>
+                <p>每位神使在凡間都有一段獨特經歷，讓他們與特定神明結下因緣，解鎖了不可思議的專業傾向。</p>
+            </div>
+
+            <div class="char-grid">
+                <!-- 劉振豪 -->
+                <div class="char-card">
+                    <div class="char-portrait">
+                        <img class="char-portrait-img" src="assets/img/char-liu.png" alt="劉振豪（城隍爺神使）">
+                        <div class="char-portrait-overlay"></div>
+                        <span class="char-portrait-badge" style="color:var(--gold);border-color:rgba(201,147,58,0.4);background:rgba(7,4,10,0.7);">⚖️ 秩序</span>
+                    </div>
+                    <div class="char-card-body">
+                        <div class="char-tags">
+                            <span class="char-type-badge">秩序被動</span>
+                            <span class="char-affinity" style="color:var(--gold);">城隍爺</span>
+                        </div>
+                        <div class="char-name serif">劉振豪 (王牌業務)</div>
+                        <p class="char-desc">凡事講求原則與效率。在車禍彌留之際，與身穿筆挺西裝的<strong>城隍爺</strong>簽下「續命契約」，參透了人世間的代價與秩序規則。</p>
+                    </div>
+                </div>
+
+                <!-- 溫青 -->
+                <div class="char-card">
+                    <div class="char-portrait">
+                        <img class="char-portrait-img" src="assets/img/char-wen.png" alt="溫青（土地公神使）">
+                        <div class="char-portrait-overlay"></div>
+                        <span class="char-portrait-badge" style="color:#fbbf24;border-color:rgba(251,191,36,0.4);background:rgba(7,4,10,0.7);">💰 財富</span>
+                    </div>
+                    <div class="char-card-body">
+                        <div class="char-tags">
+                            <span class="char-type-badge">財富被動</span>
+                            <span class="char-affinity" style="color:#fbbf24;">土地公</span>
+                        </div>
+                        <div class="char-name serif">溫青 (活力粉領)</div>
+                        <p class="char-desc">童年與廟口流浪貓玩耍。長大遇險時貓咪化身為「虎爺巨獸」護主。後被引薦給<strong>土地公（福德正神）</strong>，結下招財神緣。</p>
+                    </div>
+                </div>
+
+                <!-- 倪燄 -->
+                <div class="char-card">
+                    <div class="char-portrait">
+                        <img class="char-portrait-img" src="assets/img/char-ni.png" alt="倪燄（媽祖神使）">
+                        <div class="char-portrait-overlay"></div>
+                        <span class="char-portrait-badge" style="color:#a78bfa;border-color:rgba(167,139,250,0.4);background:rgba(7,4,10,0.7);">🎓 功名</span>
+                    </div>
+                    <div class="char-card-body">
+                        <div class="char-tags">
+                            <span class="char-type-badge">功名被動</span>
+                            <span class="char-affinity" style="color:#a78bfa;">媽祖</span>
+                        </div>
+                        <div class="char-name serif">倪燄 (截稿漫畫家)</div>
+                        <p class="char-desc">誤飲忘情水失憶。在現代化<strong>媽祖廟「祈心宮」</strong>擔任賜福外送員。透過筆尖見證凡人掙扎，在信仰中重新找回創作靈魂。</p>
+                    </div>
+                </div>
+
+                <!-- 林願初 -->
+                <div class="char-card">
+                    <div class="char-portrait">
+                        <img class="char-portrait-img" src="assets/img/char-lin.png" alt="林願初（觀世音神使）">
+                        <div class="char-portrait-overlay"></div>
+                        <span class="char-portrait-badge" style="color:#f472b6;border-color:rgba(244,114,182,0.4);background:rgba(7,4,10,0.7);">💖 健康</span>
+                    </div>
+                    <div class="char-card-body">
+                        <div class="char-tags">
+                            <span class="char-type-badge">健康被動</span>
+                            <span class="char-affinity" style="color:#f472b6;">觀世音</span>
+                        </div>
+                        <div class="char-name serif">林願初 (輪椅千金)</div>
+                        <p class="char-desc">體弱多病，深度昏迷時在夢中受<strong>觀世音菩薩</strong>點化：「因果未了，去陪伴痛苦之人。」奇蹟醒後，帶病入世救助世人。</p>
+                    </div>
+                </div>
+
+                <!-- 蘇映安 (地藏王菩薩) -->
+                <div class="char-card special-cyan">
+                    <div class="char-portrait">
+                        <img class="char-portrait-img" src="assets/img/char-su.png" alt="蘇映安（地藏王神使）">
+                        <div class="char-portrait-overlay" style="background:linear-gradient(to bottom,transparent 40%,rgba(0,20,30,0.95) 100%);"></div>
+                        <span class="char-portrait-badge" style="color:var(--cyan);border-color:rgba(0,200,212,0.4);background:rgba(7,4,10,0.7);">🪦 自然</span>
+                    </div>
+                    <div class="char-card-body">
+                        <div class="char-tags">
+                            <span class="char-type-badge" style="border-color:rgba(0,200,212,0.3);color:var(--cyan);">自然被動</span>
+                            <span class="char-affinity anim-cyan" style="color:var(--cyan);">地藏王菩薩</span>
+                        </div>
+                        <div class="char-name serif">蘇映安 (生死護理師)</div>
+                        <p class="char-desc">臨床護士日夜輪班，看盡生老病死。在無力中受到<strong>地藏王菩薩</strong>的指引，開悟生命的解脫與輪迴常態，撫平對死亡與萬物更迭的恐懼。</p>
+                    </div>
+                </div>
+
+                <!-- 周宛辭 (三太子) -->
+                <div class="char-card special-pink">
+                    <div class="char-portrait">
+                        <img class="char-portrait-img" src="assets/img/char-zhou.png" alt="周宛辭（三太子神使）">
+                        <div class="char-portrait-overlay" style="background:linear-gradient(to bottom,transparent 40%,rgba(30,5,25,0.95) 100%);"></div>
+                        <span class="char-portrait-badge" style="color:var(--pink);border-color:rgba(224,64,160,0.4);background:rgba(7,4,10,0.7);">👶 情感</span>
+                    </div>
+                    <div class="char-card-body">
+                        <div class="char-tags">
+                            <span class="char-type-badge" style="border-color:rgba(224,64,160,0.3);color:var(--pink);">情感被動</span>
+                            <span class="char-affinity" style="color:var(--pink);">三太子（哪吒）</span>
+                        </div>
+                        <div class="char-name serif">周宛辭 (自閉兒二寶媽)</div>
+                        <p class="char-desc">育兒壓力沉重，孩子自閉症令她崩潰。在心魔邊緣，她與<strong>三太子哪吒</strong>產生心靈共鳴，體悟到「大人與小孩之間的情感磨難與連結」，解開憂鬱。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Hint to Envoy Gallery -->
+            <div class="char-scroll-hint" onclick="smoothScrollTo(document.getElementById('envoy-gallery').offsetTop - 68, 1000)">
+                <span>展開神使劇照與故事</span>
+                <svg class="arrow-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ENVOY GALLERY / STILLS SECTION ===== -->
+    <section id="envoy-gallery">
+        <!-- Absolute crossfading blurred backgrounds -->
+        <div class="gallery-bg-blur-container">
+            <div class="gallery-bg-blur bg-blur-1" id="gallery-bg-blur-1"></div>
+            <div class="gallery-bg-blur bg-blur-2" id="gallery-bg-blur-2"></div>
+        </div>
+        <div class="gallery-vignette"></div>
+
+
+
+        <!-- Full-width marquee container -->
+        <div class="gallery-marquee-container" id="gallery-marquee-container">
+            <!-- Row 1: Leftward marquee -->
+            <div class="marquee-row marquee-left" id="marquee-row-1">
+                <!-- Generated by JS -->
+            </div>
+            <!-- Row 2: Rightward marquee -->
+            <div class="marquee-row marquee-right" id="marquee-row-2">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+
+        <!-- Floating story card at the bottom -->
+        <div class="gallery-floating-card" id="gallery-floating-card">
+            <button class="gallery-card-close" id="gallery-card-close" onclick="unlockGallery(event)" aria-label="恢復滾動">✕ 恢復滾動</button>
+            <div class="card-char-badge" id="card-char-badge">-</div>
+            <h4 class="card-story-title" id="card-story-title">探索神使足跡</h4>
+            <p class="card-story-desc" id="card-story-desc">滑鼠懸停在上方任何一張電影劇照上，即可解鎖塵封的因緣故事。</p>
+        </div>
+    </section>
+
+    <!-- ===== SCENE BANNER (Characters → Features 過場) ===== -->
+    <div class="scene-banner">
+        <!-- 場景圖：之後替換為桌遊實拍 / 棋盤場景圖 -->
+        <img class="scene-banner-img" src="assets/img/boardgame-scene.png" alt="桌遊場景氛圍">
+        <div class="scene-banner-overlay"></div>
+        <div class="scene-banner-text">
+            <div class="ornament" style="max-width:400px;color:var(--gold-dim);">遊戲核心機制</div>
+            <h3>以<span>香火</span>為籌碼，以<span>願力</span>定勝負</h3>
+        </div>
+    </div>
+
+    <!-- ===== FEATURES ===== -->
+    <section id="features" class="section-pad">
+        <div class="container">
+            <div class="section-heading">
+                <div class="ornament" style="margin-bottom:20px;">遊戲核心</div>
+                <h2>四大核心亮點</h2>
+                <p>融合台灣在地民間信仰本質，打造出最受策略與休閒玩家期待的資源管理機制。</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏮</div>
+                    <div class="feature-content">
+                        <h3>台灣信仰 × 現代經營</h3>
+                        <p>結合大富翁棋盤移動與《現金流》資產投資循環！玩家調度世俗「香火」（金錢）與神界「願力」，體驗人神互助、香火興衰的公關大戰。</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-content">
+                        <h3>六大權能 × 不對稱開局</h3>
+                        <p>財富、功名、情感、秩序、健康、自然六大專業判定！六大廟宇起始天賦各異（如土地公廟擅長求財），打造極具深度與重玩性的不對稱流派。</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🀄</div>
+                    <div class="feature-content">
+                        <h3>易經卦象 × 雙層特製面板</h3>
+                        <p>收服易經六十四卦信徒卡，裝備至雙層磁吸特製面板上。在八卦方位格解鎖信徒被動技能，磁吸防震，開箱手感極致 premium！</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <div class="feature-content">
+                        <h3>實體「茭杯」× 公池爭奪</h3>
+                        <p>隨附一對特製精美小茭杯！踩到「擲筊競賽格」，全體香火累積公池，親自擲出三個聖杯就能獨吞公池，體驗最地道的隨機刺激感。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CARD PREVIEW ===== -->
+    <section id="preview" class="section-pad" style="background:var(--deep);">
+        <div class="container">
+            <div class="section-heading">
+                <div class="ornament" style="margin-bottom:20px;">卦象預覽</div>
+                <h2>卦象卡牌預覽 × 神祕封印</h2>
+                <p>64 張易經願望卡精選展示。其餘 58 張卦象暫由「鎏金結界封印」，靜待正式版解鎖...</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- 乾為天 公開 -->
+                <div class="paper-card">
+                    <div class="card-top">
+                        <span class="card-hex">第 1 卦 · 乾為天</span>
+                        <span class="card-diff">難度 ✦✦</span>
+                    </div>
+                    <div class="card-mid">
+                        <div class="card-title">信徒：郭董 (求財)</div>
+                        <p class="card-quote">「想在科學園區擴廠，祈求神明賜予投資眼光與穩定資金鏈...」</p>
+                        <div class="card-req">門檻：財富 3 ／ 前置消耗：無</div>
+                    </div>
+                    <div class="card-passive">被動：起點香火收益 +2</div>
+                </div>
+
+                <!-- 山火賁 公開 -->
+                <div class="paper-card">
+                    <div class="card-top">
+                        <span class="card-hex">第 22 卦 · 山火賁</span>
+                        <span class="card-diff">難度 ✦✦✦</span>
+                    </div>
+                    <div class="card-mid">
+                        <div class="card-title">信徒：雅婷 (求緣)</div>
+                        <p class="card-quote">「母單多年，想在聯誼會前向神明求取自信容貌與好人緣...」</p>
+                        <div class="card-req">門檻：情感 4 ／ 前置消耗：無</div>
+                    </div>
+                    <div class="card-passive">被動：情感判定骰面 +1</div>
+                </div>
+
+                <!-- 封印 1 -->
+                <div class="sealed-card">
+                    <div class="sealed-lock">🔒</div>
+                    <div class="sealed-name">第 17 卦 · 隨</div>
+                    <p class="sealed-hint">卦象封印中，待上線解鎖其信徒故事與技能效果...</p>
+                </div>
+
+                <!-- 封印 2 -->
+                <div class="sealed-card">
+                    <div class="sealed-lock">🔒</div>
+                    <div class="sealed-name">第 64 卦 · 火水未濟</div>
+                    <p class="sealed-hint">最後的終局困境卦象，蘊含強大被動，待集資上線解封...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CARD UNIVERSE (Ambient Showcase Section) ===== -->
+    <section id="card-universe" class="card-universe-section">
+        <div class="card-bg-marquee">
+            <div class="card-col scroll-up-col" id="card-col-1"></div>
+            <div class="card-col scroll-down-col" id="card-col-2"></div>
+            <div class="card-col scroll-up-col" id="card-col-3"></div>
+            <div class="card-col scroll-down-col" id="card-col-4"></div>
+            <div class="card-col scroll-up-col" id="card-col-5"></div>
+            <div class="card-col scroll-down-col" id="card-col-6"></div>
+        </div>
+        <div class="card-universe-overlay"></div>
+        <div class="card-universe-content container">
+            <div class="section-heading" style="margin-bottom: 0;">
+                <div class="ornament" style="margin-bottom:20px;">因緣牌庫</div>
+                <h2>萬感交織 · 牌庫大觀</h2>
+                <p style="max-width: 650px; margin: 0 auto 24px auto;">
+                    收錄 64 張民俗奇聞「信徒祈願卡」與 60 張大千世界「事件卡」。<br>
+                    每一張卡牌都承載著一段人間的願望與神蹟，靜待神明代理人去感應與排憂解難。
+                </p>
+                <div class="ambient-badge">✨ 本區為動態背景展示，不開放互動 ✨</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIVINATION ===== -->
+    <section id="divination" class="section-pad">
+        <div class="container">
+            <div class="section-heading">
+                <div class="ornament" style="margin-bottom:20px;">互動彩蛋</div>
+                <span class="badge" style="margin-bottom:16px;display:inline-flex;">🔮 數位導入先行版</span>
+                <h2>線上擲筊挑戰公池</h2>
+                <p>想測試今天的氣運？點擊「擲筊」按鈕。連續獲得三次「聖杯」，即可解鎖網頁限定早鳥隱藏獎勵！</p>
+            </div>
+
+            <div class="divination-panel">
+                <div class="divination-meta">
+                    <div class="meta-box">
+                        <div class="meta-lbl">公池累積香火</div>
+                        <div class="meta-val gold serif" id="incense-pool">188 香火</div>
+                    </div>
+                    <div class="meta-box right">
+                        <div class="meta-lbl">連續聖杯次數</div>
+                        <div class="meta-val green serif" id="holy-cups-count">0 / 3</div>
+                    </div>
+                </div>
+
+                <div class="cups-display" id="cups-container">
+                    <div class="jiao-cup" id="cup-left" onclick="rollDivination()" title="點擊擲筊"></div>
+                    <div class="jiao-cup" id="cup-right" onclick="rollDivination()" title="點擊擲筊"></div>
+                </div>
+
+                <div class="divination-result" style="margin-bottom:12px;">
+                    <div class="divination-result-text" id="divination-result">請誠心祈願...</div>
+                </div>
+                <div class="divination-hint">點擊上方筊杯或下方按鈕開始擲筊</div>
+
+                <div style="text-align:center;">
+                    <button class="btn-red" onclick="rollDivination()" id="roll-btn">
+                        <span>擲筊問事</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 8h.01M12 12h.01M16 16h.01"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FUNDING / PLEDGE ===== -->
+    <section id="pledge" class="section-pad" style="background:var(--deep);">
+        <div class="container">
+            <div class="section-heading">
+                <div class="ornament" style="margin-bottom:20px;">募資進度</div>
+                <h2>嘖嘖募資進度 × 階梯解鎖</h2>
+                <p>集結眾人願力，解鎖更多高級配件！</p>
+            </div>
+
+            <!-- Progress -->
+            <div class="funding-bar-wrap">
+                <div class="funding-meta">
+                    <span class="amt">$342,500</span>
+                    <span>目標 $500,000（68%）</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <div class="milestones">
+                    <div class="milestone done">
+                        <span>🔓 10 萬：卡牌材質升級</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="milestone done">
+                        <span>🔓 20 萬：燙金卡盒</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="milestone pending">
+                        <span>🔒 50 萬：實體木刻筊杯</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tiers -->
+            <div class="tiers-grid">
+                <!-- 早鳥版 -->
+                <div class="tier-card">
+                    <div>
+                        <div class="tier-label">早鳥限量 60 組</div>
+                        <div class="tier-name serif" style="margin:8px 0;">神使代班早鳥版</div>
+                    </div>
+                    <div>
+                        <div style="display:flex;align-items:baseline;gap:4px;">
+                            <div class="tier-price sans">$980</div>
+                            <div class="tier-price-orig">$1,380</div>
+                        </div>
+                    </div>
+                    <p class="tier-desc">包含主遊戲一套、基礎磁吸面板 4 個、易經卡牌 64 張。早鳥加贈首發紀念角色卡一張！</p>
+                    <div class="tier-cta">
+                        <button onclick="pledgeAction('早鳥版')" class="btn-ghost" style="width:100%;justify-content:center;">立即贊助（早鳥）</button>
+                    </div>
+                </div>
+
+                <!-- 典藏版 (熱銷) -->
+                <div class="tier-card featured">
+                    <div class="tier-badge-float">MOST POPULAR</div>
+                    <div>
+                        <div class="tier-label">首發專屬推薦</div>
+                        <div class="tier-name serif" style="margin:8px 0;">神明加持典藏版</div>
+                    </div>
+                    <div>
+                        <div style="display:flex;align-items:baseline;gap:4px;">
+                            <div class="tier-price sans">$1,380</div>
+                            <div class="tier-price-orig">$1,880</div>
+                        </div>
+                    </div>
+                    <p class="tier-desc">包含早鳥版所有內容。升級大尺寸「燙金鎏金卡盒」、實體精緻雷雕硬幣、專屬金牌指示物與收納木盒。</p>
+                    <div class="tier-cta">
+                        <button onclick="pledgeAction('典藏版')" class="btn-primary" style="width:100%;justify-content:center;">立即贊助（典藏）</button>
+                    </div>
+                </div>
+
+                <!-- 開發組版 -->
+                <div class="tier-card">
+                    <div>
+                        <div class="tier-label">深度支持方案</div>
+                        <div class="tier-name serif" style="margin:8px 0;">神明開發組頂規版</div>
+                    </div>
+                    <div>
+                        <div style="display:flex;align-items:baseline;gap:4px;">
+                            <div class="tier-price sans">$2,800</div>
+                            <div class="tier-price-orig">$3,800</div>
+                        </div>
+                    </div>
+                    <p class="tier-desc">限量 20 組。包含典藏版所有內容，另加：開發日誌精裝手冊、手工木刻茭杯，以及開發團隊簽名贈言卡。</p>
+                    <div class="tier-cta">
+                        <button onclick="pledgeAction('頂規版')" class="btn-ghost" style="width:100%;justify-content:center;">立即贊助（頂規）</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SCENE BANNER (Pledge → Subscribe 過場) ===== -->
+    <div class="scene-banner">
+        <img class="scene-banner-img" src="assets/img/crowdfund-banner.png" alt="募資氛圍">
+        <div class="scene-banner-overlay"></div>
+        <div class="scene-banner-text">
+            <div class="ornament" style="max-width:400px;color:var(--gold-dim);">集結眾人願力</div>
+            <h3>成為第一批<span>神明代理人</span></h3>
+        </div>
+    </div>
+
+    <!-- ===== SUBSCRIBE ===== -->
+    <section id="subscribe" class="section-pad">
+        <div class="container">
+            <div class="subscribe-inner">
+                <div class="ornament" style="margin-bottom:20px;">早鳥搶先訂閱</div>
+                <h2 class="serif">加入候補名單</h2>
+                <p>訂閱電子郵件，在桌遊正式上架嘖嘖的第一天，收到早鳥 9 折專屬折扣碼！</p>
+                <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+                    <input class="subscribe-input" type="email" id="subscribe-email" placeholder="輸入您的電子郵件..." required>
+                    <button type="submit" class="btn-primary">
+                        訂閱通知
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <span class="footer-logo">神明公關：誰是蹟優股</span>
+            <div class="gold-divider"></div>
+            <p class="footer-copy">
+                © 2026 《神明公關：誰是蹟優股》開發團隊 · 國立聯合大學專題製作出品<br>
+                本網頁為期末發表暨數位導入預告頁面，部分卡牌與配件圖片尚在測試與打磨中，非最終市售版本。
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // --- Premium Custom Smooth Scroll (Cubic Ease-In-Out) ---
+        function smoothScrollTo(targetY, duration) {
+            const startY = window.pageYOffset || document.documentElement.scrollTop;
+            const difference = targetY - startY;
+            const startTime = performance.now();
+
+            function step(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Cubic ease-in-out curve
+                const easeInOutCubic = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                window.scrollTo(0, startY + difference * easeInOutCubic);
+
+                if (elapsed < duration) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        function scrollToMainContent() {
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                const targetY = heroSection.offsetTop - 160;
+                smoothScrollTo(targetY, 1200); // 1.2s silky smooth scroll
+            }
+        }
+
+        // Add smooth scroll behavior to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    let targetY;
+                    if (targetId === '#hero') {
+                        targetY = targetSection.offsetTop - 160;
+                    } else {
+                        targetY = targetSection.offsetTop - 68; // subtract fixed header height (68px)
+                    }
+                    smoothScrollTo(targetY, 1000); // 1.0s silky scroll for navigation links
+                }
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // 頁面加載時先將滾動條定位到最上方以防刷新定位錯亂
+            window.scrollTo(0, 0);
+
+            // 3秒後自動向下滑動至首頁
+            setTimeout(() => {
+                scrollToMainContent();
+            }, 3000);
+        });
+
+        // --- Header scroll effect ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // --- Mouse-tracking card glow ---
+        document.querySelectorAll('.char-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+                const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+                card.style.setProperty('--mx', x + '%');
+                card.style.setProperty('--my', y + '%');
+            });
+        });
+
+        // --- Intersection Observer: fade-up on scroll ---
+        const fadeEls = document.querySelectorAll('.char-card, .feature-card, .paper-card, .sealed-card, .tier-card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeEls.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.4s, box-shadow 0.4s';
+            observer.observe(el);
+        });
+
+        // --- Video modal ---
+        
+        function openVideoModal() {
+            const modal = document.createElement('div');
+            modal.id = 'video-modal';
+            modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:9000;backdrop-filter:blur(8px);';
+            modal.innerHTML = `
+                <div style="font-size:48px;">🎬</div>
+                <div style="text-align:center;padding:0 40px;">
+                    <div style="font-family:'Noto Serif TC',serif;font-size:22px;color:var(--gold-bright);margin-bottom:12px;">宣傳影片上映中...</div>
+                    <div style="font-size:14px;color:var(--text-dim);line-height:1.8;">此處在上市時嵌入 1 分鐘完整宣傳預告片<br>含「神使開溜」爆笑後設動畫 · 桌遊配件展示 · 擲筊挑戰指南</div>
+                </div>
+                <button onclick="document.getElementById('video-modal').remove()" style="border:1px solid var(--border-gold);background:transparent;color:var(--gold);padding:10px 28px;border-radius:10px;cursor:pointer;font-size:13px;font-family:Inter,sans-serif;letter-spacing:.05em;">✕ 關閉</button>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // --- Chat ---
+        const chatReplies = [
+            { name: '溫青 (虎爺神使)', color: 'linear-gradient(135deg,#1e3a5f,#2563eb)', textColor: '#bfdbfe', initial: '溫', text: '好啦！等我們墾丁曬完太陽就回去啦！這段時間看你的公關操作囉！🐯' },
+            { name: '劉振豪 (城隍神使)', color: 'linear-gradient(135deg,#3a0505,#7c1c1c)', textColor: '#fca5a5', initial: '劉', text: '根據代班契約第三條，代班人若抱怨，香火收益結算扣減 10% 喔。（笑）' },
+            { name: '倪燄 (漫畫家神使)', color: 'linear-gradient(135deg,#2e1065,#7c3aed)', textColor: '#c4b5fd', initial: '倪', text: '加油啊代班人！你經歷的這一切，會成為我下一本漫畫的絕佳題材！🖊️' },
+        ];
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const chatBox = document.getElementById('chat-box');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const sent = document.createElement('div');
+            sent.className = 'msg-row sent';
+            sent.innerHTML = `
+                <div class="msg-avatar" style="background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--black);">我</div>
+                <div class="bubble bubble-sent">${msg}</div>
+            `;
+            chatBox.appendChild(sent);
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                const r = chatReplies[Math.floor(Math.random() * chatReplies.length)];
+                const recv = document.createElement('div');
+                recv.className = 'msg-row';
+                recv.innerHTML = `
+                    <div class="msg-avatar" style="background:${r.color};color:${r.textColor};">${r.initial}</div>
+                    <div class="bubble bubble-recv">
+                        <span class="bubble-sender">${r.name}</span>
+                        ${r.text}
+                    </div>
+                `;
+                chatBox.appendChild(recv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 900 + Math.random() * 400);
+        }
+
+        function handleChatPress(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+        
+        function toggleChatWindow() {
+            const win = document.getElementById('chat-window-floating');
+            if (win) {
+                win.classList.toggle('active');
+                if (win.classList.contains('active')) {
+                    const chatBox = document.getElementById('chat-box');
+                    if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            }
+        }
+
+        // --- Divination ---
+        let holyCups = 0;
+        let poolIncense = 188;
+
+        function rollDivination() {
+            const cupL = document.getElementById('cup-left');
+            const cupR = document.getElementById('cup-right');
+            const resultEl = document.getElementById('divination-result');
+            const countEl = document.getElementById('holy-cups-count');
+            const poolEl = document.getElementById('incense-pool');
+            const rollBtn = document.getElementById('roll-btn');
+
+            rollBtn.disabled = true;
+            rollBtn.style.opacity = '0.6';
+            resultEl.innerHTML = `<span style="color:var(--text-dim);font-size:14px;">求問神明中... 筊杯旋轉中...</span>`;
+
+            cupL.classList.add('rolling');
+            cupR.classList.add('rolling');
+
+            setTimeout(() => {
+                cupL.classList.remove('rolling');
+                cupR.classList.remove('rolling');
+
+                const rollLeft = Math.random() > 0.5;
+                const rollRight = Math.random() > 0.5;
+
+                if (rollLeft !== rollRight) {
+                    // 聖杯
+                    cupL.classList.remove('flipped');
+                    cupR.classList.remove('flipped');
+                    if (rollLeft) cupR.classList.add('flipped');
+                    else cupL.classList.add('flipped');
+
+                    holyCups++;
+                    poolIncense += Math.floor(Math.random() * 10 + 5);
+                    resultEl.innerHTML = `<span>✨ <span style='color:#4ade80;font-weight:900;'>【 聖 杯（大吉） 】</span> 神明應允！</span>`;
+
+                    if (holyCups >= 3) {
+                        setTimeout(() => {
+                            alert('🎉 太神奇了！您連續擲出三次聖杯！\n神蹟降臨！您成功解鎖了「早鳥隱藏禮：香火金牌代幣套裝」！\n請截圖此畫面並在募資訂閱時填寫您的電子信箱！');
+                        }, 200);
+                        holyCups = 0;
+                    }
+                } else if (rollLeft === true) {
+                    // 笑杯
+                    cupL.classList.remove('flipped');
+                    cupR.classList.remove('flipped');
+                    holyCups = 0;
+                    resultEl.innerHTML = `<span>😄 <span style='color:#fbbf24;font-weight:900;'>【 笑 杯（吉） 】</span> 神明笑而不答，請再說明清楚。</span>`;
+                } else {
+                    // 蓋杯
+                    cupL.classList.add('flipped');
+                    cupR.classList.add('flipped');
+                    holyCups = 0;
+                    resultEl.innerHTML = `<span>❌ <span style='color:#f87171;font-weight:900;'>【 蓋 杯（凶） 】</span> 神明不允，請誠心反省後再求。</span>`;
+                }
+
+                countEl.textContent = `${holyCups} / 3`;
+                poolEl.textContent = `${poolIncense} 香火`;
+                rollBtn.disabled = false;
+                rollBtn.style.opacity = '1';
+            }, 900);
+        }
+
+        // --- Subscribe ---
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const email = document.getElementById('subscribe-email').value;
+            alert(`✉️ 訂閱成功！\n我們將在桌遊於嘖嘖上市的第一天，發送早鳥 9 折折扣碼至 ${email}，感謝支持！`);
+            e.target.reset();
+        }
+
+        // --- Pledge ---
+        function pledgeAction(type) {
+            alert(`🛒 您選擇了【${type}】方案！\n此按鈕在嘖嘖正式上架時會直接導流至募資贊助結帳頁面。\n感謝支持國立聯合大學專題創作！`);
+        }
+    
+
+        // ==========================================
+        // ====== SHINSHI STILLS GALLERY LOGIC ======
+        // ==========================================
+        const galleryData = {
+            "倪燄": {
+                count: 6,
+                stills: [
+                    { title: "幕一", desc: "「截稿日在即，靈感卻徹底枯竭。滿地的草稿和凌亂的桌面，我抱著頭癱坐在椅子上，焦慮與疲憊幾乎將我吞噬...」" },
+                    { title: "幕二", desc: "「為了逃避快要崩潰的壓力，我走進一家昏暗的孟婆咖啡廳。喝下那杯散發著藍色詭異煙霧的忘情水，我的意識隨之陷入一片空白...」" },
+                    { title: "幕三", desc: "「當我再度睜開眼，我已經穿上亮橘色的工作服。騎著印有神明公關標誌的機車，在現代媽祖廟前，成了一名傳遞信念的賜福外送員...」" },
+                    { title: "幕四", desc: "「在摩天大樓之間奔馳，手中的 Apple Pencil 劃出金色的軌跡。我用畫筆見證著凡人的掙扎與奇蹟，一筆一畫地重建那丟失的記憶...」" },
+                    { title: "幕五", desc: "「站在高樓天台上，天空中巨大的金色鳳凰展翅飛翔。那一刻，神聖的光芒照亮了黑夜，也徹底喚醒了我創作的初心...」" },
+                    { title: "幕六", desc: "「在夕陽西下的天台前，我重新架起畫布。拋下所有的迷茫，握緊畫筆，這一次，我要把凡人的信仰與奇蹟，畫進最宏大的畫卷中。」" }
+                ]
+            },
+            "劉振豪": {
+                count: 6,
+                stills: [
+                    { title: "幕一", desc: "「大雨滂沱的深夜，嚴重的車禍殘骸橫陳在街道上。我無力地倒在碎玻璃與血泊之中，意識漸漸模糊...」" },
+                    { title: "幕二", desc: "「雨水無情地打在我的臉上。我掙扎著睜開眼，胸口劇烈起伏，在生死交關的彌留邊緣，看見一絲不尋常的金光亮起...」" },
+                    { title: "幕三", desc: "「一轉眼，我竟站在高聳入雲的辦公室大樓前。落地窗外是繁華的市景，而在我面前的，是那位身穿筆挺西裝、散發威嚴金光的城隍爺...」" },
+                    { title: "幕四", desc: "「『想要活下去，就簽下這份續命契約。』在金光閃爍的辦公室中，我毫不猶豫地簽下名字，並接過那枚象徵代價的紅色護身符...」" },
+                    { title: "幕五", desc: "「發光的契約化為漫天飛舞的紙張，金色的法陣與光環在身邊環繞。我感受著體內重新湧現的生命力，與城隍契約的誓言深深烙印在靈魂中...」" },
+                    { title: "幕六", desc: "「輕輕推了推眼鏡。臉上的車禍傷口貼著紗布，但身為城隍爺的人間業務代理人，我已準備好在繁華的霓虹城市中，重整因果與秩序的公關局勢。」" }
+                ]
+            },
+            "周宛辭": {
+                count: 7,
+                stills: [
+                    { title: "幕一", desc: "「滿地的積木與凌亂玩具。家中的重擔與孩子的特殊狀況，讓我精疲力竭，只能在崩潰邊緣抱頭痛哭……」" },
+                    { title: "幕二", desc: "「就在精神緊繃到極限的崩潰邊緣，我的大腦深處突然開啟了奇特的天線，接收到了神界溫柔的共鳴頻率……」" },
+                    { title: "幕三", desc: "「隨著共鳴頻率增強，瞳孔深處亮起粉紅色的光芒。三太子那溫暖而充滿活力的神諭，正源源不絕地注入我疲憊的思緒中。」" },
+                    { title: "幕四", desc: "「在溫暖陽光灑落的房間裡，漫天粉紅色的蓮花與符號在半空中懸浮。在神明的溫柔教導下，我終於找到了心靈的避風港。」" },
+                    { title: "幕五", desc: "「在柔和的陽光下，我緊緊抱住正在哭泣的孩子。哪吒也是個讓父母頭痛的孩子吧？看著他，我學會了跟不完美和解。」" },
+                    { title: "幕六", desc: "「提起行囊，我手中握著一面泛著耀眼粉紅光芒的撥浪鼓。這是三太子所賜予的情感法寶，帶來了守護與希望。」" },
+                    { title: "幕七", desc: "「在星空下合十祈禱，粉紅色的因緣線在指尖擴散。這場代班旅程，原來是三太子為我準備的、一場關於愛的溫柔修行。」" }
+                ]
+            },
+            "林願初": {
+                count: 6,
+                stills: [
+                    { title: "幕一", desc: "「冰冷的儀器規律地響著，我毫無知覺地躺在醫院的病床上。醫生說我可能再也醒不來，但我的靈魂正在遠行...」" },
+                    { title: "幕二", desc: "「在無痛的純白夢境裡，菩薩在白光中顯現，溫柔地對我說：『妳的因果未了，去替我抱抱那些在塵世中哭泣的人吧。』」" },
+                    { title: "幕三", desc: "「我奇蹟般地睜開雙眼！瞳孔中亮起神聖的微光，胸前綻放出璀璨的金綠光芒。那殘破的生命被重新點燃。」" },
+                    { title: "幕四", desc: "「即使雙腿失去知覺，坐上輪椅，我依然選擇來到陽光灑落的公園。看著微風吹拂，我下定決心要帶給世人溫暖。」" },
+                    { title: "幕五", desc: "「雙手捧起一朵散發翠綠幽光的晶瑩蓮花。這是菩薩賜予的被動權能，讓我有能力去撫平他人身上的痛苦與迷茫。」" },
+                    { title: "幕六", desc: "「坐在漫天綠色治癒光點與嫩葉飛舞的法陣中，我的內心無比寧靜。這條救度眾生的道路，我將帶著微笑堅定地走下去。」" }
+                ]
+            },
+            "溫青": {
+                count: 6,
+                stills: [
+                    { title: "幕一", desc: "「童年時，我最喜歡在溫暖的宮廟前，和這隻長相奇特的流浪小貓玩耍。那時的日子，單純而又無憂無慮...」" },
+                    { title: "幕二", desc: "「長大後，為生計奔波的疲憊夜晚。在昏暗潮濕的巷弄深處，被不懷好意的歹徒步步逼近，恐懼讓我幾乎無法呼吸...」" },
+                    { title: "幕三", desc: "「千鈞一髮之際，車輛劇烈震動！一頭由熊熊橘紅火焰幻化而成的巨獸劇烈咆哮，威嚴的猛虎姿態瞬間嚇退了歹徒！」" },
+                    { title: "幕四", desc: "「驚魂未定中，那頭威猛的火虎竟再度縮小，溫順地蜷縮在我的懷裡。而我的身邊，鋪滿了金燦燦的招財銅錢...」" },
+                    { title: "幕五", desc: "「站在夕陽餘暉灑落的古老廟宇前，我雙手合十虔誠地祈禱。原來我與虎爺的緣分，早已在童年的陪伴中悄悄結下...」" },
+                    { title: "幕六", desc: "「懷抱著小貓，耳邊伴隨金幣碰撞的清脆聲響與微縮的火虎. 今天起，作為福德廟的神使，我要在人間開啟財富權能的全新篇章！」" }
+                ]
+            },
+            "蘇映安": {
+                count: 6,
+                stills: [
+                    { title: "幕一", desc: "「剛結束漫長的夜班，我無力地靠在醫院走廊牆壁上。每天看著生命的消逝與掙扎，我的心中滿是無力感...」" },
+                    { title: "幕二", desc: "「當我手握針筒走向病房，突然能清晰看見，一條條如黑夜枯枝般的衰敗黑氣正爬上病患的身體，那正是生命凋零的軌跡...」" },
+                    { title: "幕三", desc: "「在漫天星空的屋頂上，一位身穿袈裟的神秘老禪師出現在我面前。他展示著一片散發金光的太極落葉圖騰，向我點化萬物輪迴的真理...」" },
+                    { title: "幕四", desc: "「雙手合十虔誠地合掌，綠色嫩葉組成的旋風在身邊環繞。我終於接納了生死皆為自然更迭的本質，靈魂得到了真正的洗滌與開悟...」" },
+                    { title: "幕五", desc: "「生與死，就像樹葉的抽芽與飄落一樣自然。走在落葉紛飛的秋日原野中，我以豁達、溫柔的心境，去安撫每一顆受傷的靈魂...」" },
+                    { title: "幕六", desc: "「在綠色星球與巨大世界之樹的浩瀚景象前，我高舉發光針筒。作為地藏王菩薩大願的代行者，我將以自然權能引導眾生走向安寧。」" }
+                ]
+            }
+        };
+        
+        const charColors = {
+            "倪燄": { text: "#c4b5fd", border: "rgba(196,181,253,0.4)", bg: "rgba(46,16,101,0.4)" },
+            "劉振豪": { text: "#fca5a5", border: "rgba(252,165,165,0.4)", bg: "rgba(58,5,5,0.4)" },
+            "周宛辭": { text: "#f472b6", border: "rgba(244,114,182,0.4)", bg: "rgba(224,64,160,0.15)" },
+            "林願初": { text: "#fbcfe8", border: "rgba(251,207,232,0.4)", bg: "rgba(144,30,80,0.15)" },
+            "溫青": { text: "#fde047", border: "rgba(253,224,71,0.4)", bg: "rgba(130,100,20,0.15)" },
+            "蘇映安": { text: "#a5f3fc", border: "rgba(165,243,252,0.4)", bg: "rgba(0,100,120,0.15)" }
+        };
+
+        let isGalleryLocked = false;
+        let hoveredItem = null;
+        let activeBlurLayer = 1;
+
+        function initShinshiGallery() {
+            // Build the list of all 37 stills
+            const allStills = [];
+            for (const [charName, charInfo] of Object.entries(galleryData)) {
+                charInfo.stills.forEach((still, i) => {
+                    allStills.push({
+                        char: charName,
+                        index: i + 1,
+                        title: still.title,
+                        desc: still.desc,
+                        img: `assets/stills/${charName}_${i + 1}.png`
+                    });
+                });
+            }
+
+            // Partition into two rows
+            const row1Stills = [];
+            const row2Stills = [];
+            allStills.forEach((still, i) => {
+                if (i % 2 === 0) {
+                    row1Stills.push(still);
+                } else {
+                    row2Stills.push(still);
+                }
+            });
+
+            // Populate the rows
+            const row1El = document.getElementById('marquee-row-1');
+            const row2El = document.getElementById('marquee-row-2');
+            
+            if (row1El) populateMarqueeRow(row1El, row1Stills);
+            if (row2El) populateMarqueeRow(row2El, row2Stills);
+
+            // Add click outside behavior
+            document.getElementById('envoy-gallery').addEventListener('click', function(e) {
+                if (isGalleryLocked && !e.target.closest('#gallery-floating-card') && !e.target.closest('.gallery-item')) {
+                    unlockGallery(e);
+                }
+            });
+        }
+
+        function populateMarqueeRow(rowEl, stillsList) {
+            // Duplicate the list to enable infinite loop
+            const doubleList = [...stillsList, ...stillsList];
+            
+            doubleList.forEach((still) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'gallery-item-wrapper';
+                
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                item.setAttribute('data-char', still.char);
+                item.setAttribute('data-title', still.title);
+                item.setAttribute('data-desc', still.desc);
+                item.setAttribute('data-img', still.img);
+                
+                let badgeColorClass = 'badge-gold';
+                if (still.char === '劉振豪') badgeColorClass = 'badge-liu';
+                else if (still.char === '溫青') badgeColorClass = 'badge-wen';
+                else if (still.char === '倪燄') badgeColorClass = 'badge-ni';
+                else if (still.char === '林願初') badgeColorClass = 'badge-lin';
+                else if (still.char === '蘇映安') badgeColorClass = 'badge-su';
+                else if (still.char === '周宛辭') badgeColorClass = 'badge-zhou';
+
+                item.innerHTML = `
+                    <img src="${still.img}" alt="${still.title}" loading="lazy" onerror="this.src='https://picsum.photos/seed/${still.char}${still.index}/300/188'">
+                    <div class="gallery-item-overlay"></div>
+                    <span class="gallery-item-tag ${badgeColorClass}">${still.char}</span>
+                `;
+                
+                // Bind hover and click events to the static wrapper, passing item to handlers
+                wrapper.addEventListener('mouseenter', () => handleItemHover(item));
+                wrapper.addEventListener('mouseleave', () => handleItemLeave(item));
+                wrapper.addEventListener('click', (e) => handleItemClick(item, e));
+                
+                wrapper.appendChild(item);
+                rowEl.appendChild(wrapper);
+            });
+        }
+
+        function setBlurBackground(imgPath) {
+            const layer1 = document.getElementById('gallery-bg-blur-1');
+            const layer2 = document.getElementById('gallery-bg-blur-2');
+            if (!layer1 || !layer2) return;
+            
+            // URL-encode to handle Chinese characters in CSS url() correctly
+            const encodedPath = encodeURI(imgPath);
+            
+            if (activeBlurLayer === 1) {
+                layer2.style.backgroundImage = `url('${encodedPath}')`;
+                layer2.classList.add('active-bg');
+                layer1.classList.remove('active-bg');
+                activeBlurLayer = 2;
+            } else {
+                layer1.style.backgroundImage = `url('${encodedPath}')`;
+                layer1.classList.add('active-bg');
+                layer2.classList.remove('active-bg');
+                activeBlurLayer = 1;
+            }
+        }
+
+        function resetBlurBackground() {
+            const layer1 = document.getElementById('gallery-bg-blur-1');
+            const layer2 = document.getElementById('gallery-bg-blur-2');
+            if (!layer1 || !layer2) return;
+            
+            layer1.classList.remove('active-bg');
+            layer2.classList.remove('active-bg');
+            
+            // Delay clearing to let the fade-out transition complete smoothly
+            setTimeout(() => {
+                if (!layer1.classList.contains('active-bg')) layer1.style.backgroundImage = 'none';
+                if (!layer2.classList.contains('active-bg')) layer2.style.backgroundImage = 'none';
+            }, 800);
+        }
+
+        function handleItemHover(item) {
+            if (isGalleryLocked) return;
+            hoveredItem = item;
+            
+            const gallerySection = document.getElementById('envoy-gallery');
+            if (gallerySection) gallerySection.classList.add('has-hover');
+            
+            item.classList.add('hovered');
+            
+            const char = item.getAttribute('data-char');
+            const title = item.getAttribute('data-title');
+            const desc = item.getAttribute('data-desc');
+            const img = item.getAttribute('data-img');
+            
+            setBlurBackground(img);
+            
+            const titleEl = document.getElementById('card-story-title');
+            const descEl = document.getElementById('card-story-desc');
+            if (titleEl) titleEl.innerText = title;
+            if (descEl) descEl.innerText = desc;
+            
+            const badgeEl = document.getElementById('card-char-badge');
+            if (badgeEl) {
+                badgeEl.innerText = char;
+                const colors = charColors[char] || { text: "var(--gold-bright)", border: "var(--border-gold)", bg: "rgba(201, 147, 58, 0.08)" };
+                badgeEl.style.color = colors.text;
+                badgeEl.style.borderColor = colors.border;
+                badgeEl.style.background = colors.bg;
+            }
+            
+            const card = document.getElementById('gallery-floating-card');
+            if (card) card.classList.add('active');
+        }
+
+        function handleItemLeave(item) {
+            if (isGalleryLocked) return;
+            if (hoveredItem === item) hoveredItem = null;
+            item.classList.remove('hovered');
+            
+            const hoveredCount = document.querySelectorAll('.gallery-item.hovered').length;
+            if (hoveredCount === 0) {
+                const gallerySection = document.getElementById('envoy-gallery');
+                if (gallerySection) gallerySection.classList.remove('has-hover');
+                
+                const card = document.getElementById('gallery-floating-card');
+                if (card) card.classList.remove('active');
+                
+                resetBlurBackground();
+            }
+        }
+
+        function handleItemClick(item, e) {
+            e.stopPropagation();
+            
+            const prevActive = document.querySelector('.gallery-item.locked-active');
+            if (prevActive) prevActive.classList.remove('locked-active');
+            
+            isGalleryLocked = true;
+            item.classList.add('locked-active');
+            
+            const gallerySection = document.getElementById('envoy-gallery');
+            if (gallerySection) {
+                gallerySection.classList.add('is-locked');
+                gallerySection.classList.add('has-hover');
+            }
+            
+            const char = item.getAttribute('data-char');
+            const title = item.getAttribute('data-title');
+            const desc = item.getAttribute('data-desc');
+            const img = item.getAttribute('data-img');
+            
+            setBlurBackground(img);
+            
+            const titleEl = document.getElementById('card-story-title');
+            const descEl = document.getElementById('card-story-desc');
+            if (titleEl) titleEl.innerText = title;
+            if (descEl) descEl.innerText = desc;
+            
+            const badgeEl = document.getElementById('card-char-badge');
+            if (badgeEl) {
+                badgeEl.innerText = char;
+                const colors = charColors[char] || { text: "var(--gold-bright)", border: "var(--border-gold)", bg: "rgba(201, 147, 58, 0.08)" };
+                badgeEl.style.color = colors.text;
+                badgeEl.style.borderColor = colors.border;
+                badgeEl.style.background = colors.bg;
+            }
+            
+            const card = document.getElementById('gallery-floating-card');
+            if (card) {
+                card.classList.add('active');
+                card.classList.add('locked');
+            }
+        }
+
+        function unlockGallery(e) {
+            if (e) e.stopPropagation();
+            isGalleryLocked = false;
+            
+            const gallerySection = document.getElementById('envoy-gallery');
+            if (gallerySection) {
+                gallerySection.classList.remove('is-locked');
+                gallerySection.classList.remove('has-hover');
+            }
+            
+            const lockedActive = document.querySelector('.gallery-item.locked-active');
+            if (lockedActive) lockedActive.classList.remove('locked-active');
+            
+            const hovered = document.querySelectorAll('.gallery-item.hovered');
+            hovered.forEach(el => el.classList.remove('hovered'));
+            
+            resetBlurBackground();
+            
+            const card = document.getElementById('gallery-floating-card');
+            if (card) {
+                card.classList.remove('locked');
+                card.classList.remove('active');
+            }
+        }
+
+        
+        function initCardUniverse() {
+            for (let colIdx = 1; colIdx <= 6; colIdx++) {
+                const colEl = document.getElementById(`card-col-${colIdx}`);
+                if (!colEl) continue;
+                
+                const startIdx = (colIdx - 1) * 10 + 1;
+                const endIdx = startIdx + 9;
+                
+                const colCards = [];
+                for (let i = startIdx; i <= endIdx; i++) {
+                    colCards.push(`assets/cards/card_${i}.jpg`);
+                }
+                
+                const fullList = [...colCards, ...colCards];
+                // Remove loading="lazy" to ensure all cards load instantly on page load
+                // without waiting for the browser to trigger lazy loading inside transform animations.
+                colEl.innerHTML = fullList.map(src => `<img src="${src}" alt="卡牌">`).join('');
+            }
+        }
+
+        // Run after load
+        window.addEventListener('DOMContentLoaded', () => {
+            initShinshiGallery();
+            initCardUniverse();
+        });
+
+    </script>
+
+    <!-- ===== FLOATING CHAT BALL & WINDOW ===== -->
+    <div class="chat-ball" id="chat-ball" onclick="toggleChatWindow()" title="正牌神使開溜群 (6)">
+        <span class="chat-ball-icon">💬</span>
+        <span class="chat-ball-badge">6</span>
+    </div>
+
+    <div class="chat-window" id="chat-window-floating">
+        <div class="chat-header">
+            <div class="chat-avatar">逃</div>
+            <div>
+                <div class="chat-group-name">「正牌神使開溜群」(6)</div>
+                <div class="chat-online">● 線上衝浪中...</div>
+            </div>
+            <div style="margin-left:auto; display:flex; align-items:center; gap:10px;">
+                <button onclick="toggleChatWindow()" style="background:transparent; border:none; color:var(--text-dim); cursor:pointer; font-size:18px; line-height:1; padding:4px;" title="關閉">✕</button>
+            </div>
+        </div>
+        <div class="chat-body" id="chat-box">
+            <div class="msg-row">
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#bfdbfe;">溫</div>
+                <div class="bubble bubble-recv">
+                    <span class="bubble-sender">溫青 (虎爺神使)</span>
+                    Hi！幸運兒！我們受夠天天 24h on call 了～虎爺說要去墾丁衝浪，我們先撤囉！🏖️
+                </div>
+            </div>
+            <div class="msg-row sent">
+                <div class="msg-avatar" style="background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--black);">我</div>
+                <div class="bubble bubble-sent">
+                    等一下！把代班契約強行綁在我身上是什麼意思？！我只是個截稿邊緣的社畜漫畫家啊！😱
+                </div>
+            </div>
+            <div class="msg-row">
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#3a0505,#7c1c1c);color:#fca5a5;">劉</div>
+                <div class="bubble bubble-recv">
+                    <span class="bubble-sender">劉振豪 (城隍神使)</span>
+                    契約已公證（蓋章）。你只要把累積的廟宇願力衝到 100% 我們就能回去了。加油，廟口的流浪狗阿福記得幫忙餵一下。🐶
+                </div>
+            </div>
+            <div class="msg-row">
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#052a10,#166534);color:#86efac;">蘇</div>
+                <div class="bubble bubble-recv">
+                    <span class="bubble-sender">蘇映安 (生死護理師)</span>
+                    放輕鬆，生老病死皆是自然循環，代班也是修行的一環嘛。（發送墾丁椰子汁合照）
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input class="chat-input" id="chat-input" type="text" placeholder="輸入訊息吐槽他們..." onkeypress="handleChatPress(event)">
+            <button class="chat-send" onclick="sendChatMessage()" aria-label="送出">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
