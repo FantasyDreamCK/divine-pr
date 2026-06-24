@@ -1019,65 +1019,97 @@
         /* ===== CARD PREVIEW ===== */
         #preview { background: var(--black); }
 
-        .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-
-        /* Paper card style */
-        .paper-card {
-            aspect-ratio: 5/7;
-            border-radius: var(--radius);
-            background: linear-gradient(145deg, #f8f0dc, #ede0bf);
-            border: 2px solid #8b5c1a;
-            padding: 18px;
+        /* ===== CARDS FAN SYSTEM ===== */
+        .cards-fan-container {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: flex-end;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6), inset 0 0 20px rgba(139,92,26,0.06);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: default;
-        }
-        .paper-card:hover { transform: translateY(-10px) rotateX(4deg) rotateY(-4deg); box-shadow: 0 24px 60px rgba(0,0,0,0.8), 0 0 30px rgba(201,147,58,0.3); }
-        .paper-card::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            border: 1px solid rgba(139,92,26,0.3);
-            border-radius: calc(var(--radius) - 4px);
-            pointer-events: none;
-        }
-        /* Red header strip */
-        .paper-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #8b1a1a, #c0392b, #8b1a1a);
+            height: 480px;
+            margin: 60px auto 20px auto;
+            max-width: 900px;
+            padding-bottom: 20px;
+            transition: all 0.6s ease;
         }
 
-        .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
-        .card-hex { font-size: 10px; font-weight: 700; color: #6b3a12; font-family: 'Noto Serif TC', serif; }
-        .card-diff {
-            font-size: 9px;
-            padding: 2px 6px;
-            background: #8b1a1a;
-            color: #f0d090;
-            border-radius: 3px;
-            font-weight: 600;
+        .fan-card {
+            position: absolute;
+            width: 230px;
+            height: 330px;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            background-color: var(--surface-2);
+            border: 2px solid var(--border-gold);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            cursor: pointer;
+            transform-origin: bottom center;
         }
-        .card-mid { flex: 1; padding: 10px 0; }
-        .card-title { font-size: 16px; font-weight: 900; color: #3a1205; margin-bottom: 6px; font-family: 'Noto Serif TC', serif; }
-        .card-quote { font-size: 10px; color: #5a3a20; line-height: 1.6; font-style: italic; }
-        .card-req { font-size: 9px; color: #7a5030; border-top: 1px solid rgba(139,92,26,0.2); padding-top: 6px; margin-top: 6px; }
-        .card-passive {
-            background: linear-gradient(135deg, #8b1a1a, #6b1010);
-            color: #f0d090;
-            text-align: center;
-            padding: 6px;
-            border-radius: 5px;
-            font-size: 11px;
-            font-family: 'Noto Serif TC', serif;
+
+        .fan-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
+
+        /* Default hand layout positions */
+        .fan-card:nth-child(1) {
+            transform: translateX(-240px) translateY(35px) rotate(-18deg);
+            z-index: 10;
+        }
+        .fan-card:nth-child(2) {
+            transform: translateX(-80px) translateY(10px) rotate(-6deg);
+            z-index: 11;
+        }
+        .fan-card:nth-child(3) {
+            transform: translateX(80px) translateY(10px) rotate(6deg);
+            z-index: 12;
+        }
+        .fan-card:nth-child(4) {
+            transform: translateX(240px) translateY(35px) rotate(18deg);
+            z-index: 13;
+        }
+
+        /* Interaction - Hover State */
+        .fan-card:hover {
+            transform: translateX(var(--hover-x, 0)) translateY(-50px) rotate(0deg) scale(1.18);
+            z-index: 50 !important; /* Force to top */
+            box-shadow: 0 25px 60px rgba(232, 184, 75, 0.45);
+            border-color: var(--gold-bright);
+        }
+
+        .fan-card:nth-child(1):hover { --hover-x: -240px; }
+        .fan-card:nth-child(2):hover { --hover-x: -80px; }
+        .fan-card:nth-child(3):hover { --hover-x: 80px; }
+        .fan-card:nth-child(4):hover { --hover-x: 240px; }
+
+        /* Mobile Responsive adjustment */
+        @media (max-width: 768px) {
+            .cards-fan-container {
+                height: auto;
+                min-height: 400px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .fan-card {
+                position: relative !important;
+                transform: none !important;
+                width: 160px;
+                height: 230px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            }
+            .fan-card:hover {
+                transform: scale(1.08) !important;
+                box-shadow: 0 12px 30px rgba(232, 184, 75, 0.4) !important;
+            }
+        }
+
 
         /* Sealed card */
         .sealed-card {
@@ -1985,8 +2017,9 @@
             <nav class="site-nav">
                 <a href="#origin">神使因緣</a>
                 <a href="#characters">角色卡牌</a>
+                <a href="https://yuma1014.github.io/divine-pr/" target="_blank" style="color: var(--gold-bright); font-weight: 600;">🎙️ 配音故事</a>
                 <a href="#features">遊戲特色</a>
-                <a href="#preview">卡牌封印</a>
+                <a href="#preview">卡牌預覽</a>
                 <a href="#divination">線上擲筊</a>
                 <a href="#pledge">贊助方案</a>
             </nav>
@@ -2230,6 +2263,24 @@
                 </div>
             </div>
             
+            <!-- Immersive Voice Link CTA -->
+            <div class="voice-immersive-cta" style="margin: 60px auto 40px auto; text-align: center; max-width: 800px;">
+                <div class="voice-card-wrapper" style="background: linear-gradient(135deg, rgba(20, 13, 24, 0.9) 0%, rgba(35, 20, 45, 0.9) 100%); border: 2px solid var(--border-gold); border-radius: var(--radius-lg); padding: 40px 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(232, 184, 75, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
+                    <span class="badge" style="background: var(--red); color: var(--text); border: 1px solid var(--border-gold); padding: 4px 12px; font-size: 11px; border-radius: 20px; display: inline-block; margin-bottom: 15px; letter-spacing: 0.1em;">🎙️ 語音沉浸體驗</span>
+                    <h3 class="serif" style="font-size: 24px; color: var(--gold-bright); margin-bottom: 12px; letter-spacing: 0.05em;">六大神使原聲帶 · 沉浸式配音故事集</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.8; max-width: 600px; margin: 0 auto 24px auto;">
+                        聆聽神使背後的凡塵心願與神秘配音！我們特別推出了神使專屬配音故事網頁，讓您身歷其境體驗每位代班神使的宿命軌跡與溫暖嗓音。
+                    </p>
+                    <a href="https://yuma1014.github.io/divine-pr/" target="_blank" class="btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; font-size: 15px; text-decoration: none; border-radius: 30px; font-weight: 600; box-shadow: 0 4px 15px rgba(201, 147, 58, 0.3); transition: all 0.3s ease;">
+                        <span>立即進入沉浸式配音世界</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition: transform 0.3s ease;">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
             <!-- Scroll Hint to Envoy Gallery -->
             <div class="char-scroll-hint" onclick="smoothScrollTo(document.getElementById('envoy-gallery').offsetTop - 68, 1000)">
                 <span>展開神使劇照與故事</span>
@@ -2329,53 +2380,32 @@
     <section id="preview" class="section-pad" style="background:var(--deep);">
         <div class="container">
             <div class="section-heading">
-                <div class="ornament" style="margin-bottom:20px;">卦象預覽</div>
-                <h2>卦象卡牌預覽 × 神祕封印</h2>
-                <p>64 張易經願望卡精選展示。其餘 58 張卦象暫由「鎏金結界封印」，靜待正式版解鎖...</p>
+                <div class="ornament" style="margin-bottom:20px;">卡牌預覽</div>
+                <h2>精選信徒願望卡展示</h2>
+                <p>本專題精選四款具備代表性不同難度、求願類型的易經願望卡（乾為天、山火賁、澤雷隨、火水未濟），展示完整的信徒故事與技能機制。</p>
             </div>
 
-            <div class="cards-grid">
-                <!-- 乾為天 公開 -->
-                <div class="paper-card">
-                    <div class="card-top">
-                        <span class="card-hex">第 1 卦 · 乾為天</span>
-                        <span class="card-diff">難度 ✦✦</span>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-title">信徒：郭董 (求財)</div>
-                        <p class="card-quote">「想在科學園區擴廠，祈求神明賜予投資眼光與穩定資金鏈...」</p>
-                        <div class="card-req">門檻：財富 3 ／ 前置消耗：無</div>
-                    </div>
-                    <div class="card-passive">被動：起點香火收益 +2</div>
+            <div class="cards-fan-container">
+                <!-- 乾為天 -->
+                <div class="fan-card" title="第 1 卦 · 乾為天">
+                    <img src="assets/img/showcase-card-01.jpg" alt="乾為天 · 信徒郭董">
                 </div>
+                <!-- 澤雷隨 -->
+                <div class="fan-card" title="第 17 卦 · 澤雷隨">
+                    <img src="assets/img/showcase-card-17.jpg" alt="澤雷隨 · 信徒小文">
+                </div>
+                <!-- 山火賁 -->
+                <div class="fan-card" title="第 22 卦 · 山火賁">
+                    <img src="assets/img/showcase-card-22.jpg" alt="山火賁 · 信徒雅婷">
+                </div>
+                <!-- 火水未濟 -->
+                <div class="fan-card" title="第 64 卦 · 火水未濟">
+                    <img src="assets/img/showcase-card-64.jpg" alt="火水未濟 · 信徒小豪">
+                </div>
+            </div>
 
-                <!-- 山火賁 公開 -->
-                <div class="paper-card">
-                    <div class="card-top">
-                        <span class="card-hex">第 22 卦 · 山火賁</span>
-                        <span class="card-diff">難度 ✦✦✦</span>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-title">信徒：雅婷 (求緣)</div>
-                        <p class="card-quote">「母單多年，想在聯誼會前向神明求取自信容貌與好人緣...」</p>
-                        <div class="card-req">門檻：情感 4 ／ 前置消耗：無</div>
-                    </div>
-                    <div class="card-passive">被動：情感判定骰面 +1</div>
-                </div>
-
-                <!-- 封印 1 -->
-                <div class="sealed-card">
-                    <div class="sealed-lock">🔒</div>
-                    <div class="sealed-name">第 17 卦 · 隨</div>
-                    <p class="sealed-hint">卦象封印中，待上線解鎖其信徒故事與技能效果...</p>
-                </div>
-
-                <!-- 封印 2 -->
-                <div class="sealed-card">
-                    <div class="sealed-lock">🔒</div>
-                    <div class="sealed-name">第 64 卦 · 火水未濟</div>
-                    <p class="sealed-hint">最後的終局困境卦象，蘊含強大被動，待集資上線解封...</p>
-                </div>
+            <div class="fan-hint-text" style="text-align: center; margin-top: 30px; font-size: 13px; color: var(--text-dim); letter-spacing: 0.15em;">
+                ✨ 滑鼠懸停（或手機點擊）可將卡牌抽出並放大檢視細節 ✨
             </div>
         </div>
     </section>
@@ -2576,7 +2606,7 @@
             <div class="gold-divider"></div>
             <p class="footer-copy">
                 © 2026 《神明公關：誰是蹟優股》開發團隊 · 國立聯合大學專題製作出品<br>
-                本網頁為期末發表暨數位導入預告頁面，部分卡牌與配件圖片尚在測試與打磨中，非最終市售版本。
+                本網頁為國立聯合大學專題發表暨數位導入成果頁面。全案美術設計、卡牌數據庫與核心機制皆已完整實體化，非最終市售商業版本。
             </p>
         </div>
     </footer>
@@ -2664,7 +2694,7 @@
         });
 
         // --- Intersection Observer: fade-up on scroll ---
-        const fadeEls = document.querySelectorAll('.char-card, .feature-card, .paper-card, .sealed-card, .tier-card');
+        const fadeEls = document.querySelectorAll('.char-card, .feature-card, .cards-fan-container, .sealed-card, .tier-card');
         const observer = new IntersectionObserver(entries => {
             entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
@@ -2689,14 +2719,18 @@
         function openVideoModal() {
             const modal = document.createElement('div');
             modal.id = 'video-modal';
-            modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:9000;backdrop-filter:blur(8px);';
+            modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:12000;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);';
             modal.innerHTML = `
-                <div style="font-size:48px;">🎬</div>
-                <div style="text-align:center;padding:0 40px;">
-                    <div style="font-family:'Noto Serif TC',serif;font-size:22px;color:var(--gold-bright);margin-bottom:12px;">宣傳影片上映中...</div>
-                    <div style="font-size:14px;color:var(--text-dim);line-height:1.8;">此處在上市時嵌入 1 分鐘完整宣傳預告片<br>含「神使開溜」爆笑後設動畫 · 桌遊配件展示 · 擲筊挑戰指南</div>
+                <div style="font-family:'Noto Serif TC',serif;font-size:22px;color:var(--gold-bright);text-shadow:0 0 10px rgba(232,184,75,0.4);letter-spacing:0.05em;">《神明公關：誰是蹟優股》前導宣傳片</div>
+                <div style="position:relative; width:90%; max-width:800px; aspect-ratio:16/9; background:#07040a; border-radius:12px; overflow:hidden; border:2px solid var(--border-gold); box-shadow:0 10px 50px rgba(0,0,0,0.8), 0 0 30px rgba(232,184,75,0.15); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:20px;">
+                    <video src="" style="display:none;"></video>
+                    <span style="font-size:44px; margin-bottom:4px; filter:drop-shadow(0 0 10px rgba(232,184,75,0.25)); animation: pulse 2s infinite;">🎬</span>
+                    <div style="font-size:18px; color:var(--text); font-weight:700; font-family:'Noto Serif TC',serif; letter-spacing:0.05em;">前導宣傳片製作中</div>
+                    <p style="font-size:13px; color:var(--text-dim); text-align:center; max-width:320px; line-height:1.6;">精彩桌遊宣傳片正在精心籌備中，即將解禁上線，敬請期待！</p>
                 </div>
-                <button onclick="document.getElementById('video-modal').remove()" style="border:1px solid var(--border-gold);background:transparent;color:var(--gold);padding:10px 28px;border-radius:10px;cursor:pointer;font-size:13px;font-family:Inter,sans-serif;letter-spacing:.05em;">✕ 關閉</button>
+                <div style="display:flex; gap:16px; align-items:center;">
+                    <button onclick="document.getElementById('video-modal').remove()" style="border:1px solid var(--border-gold);background:transparent;color:var(--gold);padding:10px 28px;border-radius:10px;cursor:pointer;font-size:13px;font-family:Inter,sans-serif;letter-spacing:.05em;transition:all 0.3s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">✕ 關閉視窗</button>
+                </div>
             `;
             document.body.appendChild(modal);
         }
