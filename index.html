@@ -1991,6 +1991,91 @@
             100% { box-shadow: 0 4px 20px rgba(232, 184, 75, 0.4), 0 0 0 0 rgba(232, 184, 75, 0); }
         }
 
+        /* ===== FLOATING FEEDBACK BALL ===== */
+        .feedback-ball {
+            position: fixed;
+            top: 166px; /* Positioned directly under chat ball (90px + 56px + 20px gap) */
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c2d12, #ea580c); /* Warm Flame/Incense Orange Form theme */
+            box-shadow: 0 4px 20px rgba(234, 88, 12, 0.4), 0 0 15px rgba(234, 88, 12, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 11000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: feedbackBallPulse 3s infinite;
+            animation-delay: 1.5s;
+        }
+        .feedback-ball:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(234, 88, 12, 0.6), 0 0 25px rgba(234, 88, 12, 0.3);
+        }
+        .feedback-ball-icon {
+            font-size: 24px;
+        }
+        @keyframes feedbackBallPulse {
+            0% { box-shadow: 0 4px 20px rgba(234, 88, 12, 0.4), 0 0 0 0 rgba(234, 88, 12, 0.4); }
+            70% { box-shadow: 0 4px 20px rgba(234, 88, 12, 0.4), 0 0 0 15px rgba(234, 88, 12, 0); }
+            100% { box-shadow: 0 4px 20px rgba(234, 88, 12, 0.4), 0 0 0 0 rgba(234, 88, 12, 0); }
+        }
+
+        /* ===== FLOATING FEEDBACK WINDOW ===== */
+        .feedback-window {
+            position: fixed;
+            top: 160px; /* Aligned with chat-window top */
+            right: 30px;
+            width: 360px;
+            height: 520px;
+            z-index: 11000;
+            background: rgba(12, 8, 18, 0.98);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(232, 184, 75, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            resize: both;
+            min-width: 300px;
+            min-height: 350px;
+            max-width: 550px;
+            max-height: 750px;
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+        }
+        .feedback-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .feedback-body {
+            flex: 1;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Responsive Mobile adjustment for both floating windows */
+        @media (max-width: 480px) {
+            .chat-window, .feedback-window {
+                right: 15px;
+                left: 15px;
+                width: auto !important;
+                height: 75vh !important;
+                top: 85px !important;
+                bottom: auto !important;
+                max-width: none !important;
+                min-width: 0 !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -2780,12 +2865,29 @@
         
         function toggleChatWindow() {
             const win = document.getElementById('chat-window-floating');
+            const feedbackWin = document.getElementById('feedback-window-floating');
             if (win) {
+                // Auto close feedback window if opening chat window
+                if (!win.classList.contains('active') && feedbackWin) {
+                    feedbackWin.classList.remove('active');
+                }
                 win.classList.toggle('active');
                 if (win.classList.contains('active')) {
                     const chatBox = document.getElementById('chat-box');
                     if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
                 }
+            }
+        }
+
+        function toggleFeedbackWindow() {
+            const chatWin = document.getElementById('chat-window-floating');
+            const feedbackWin = document.getElementById('feedback-window-floating');
+            if (feedbackWin) {
+                // Auto close chat window if opening feedback window
+                if (!feedbackWin.classList.contains('active') && chatWin) {
+                    chatWin.classList.remove('active');
+                }
+                feedbackWin.classList.toggle('active');
             }
         }
 
@@ -3222,6 +3324,27 @@
     <div class="chat-ball" id="chat-ball" onclick="toggleChatWindow()" title="正牌神使開溜群 (6)">
         <span class="chat-ball-icon">💬</span>
         <span class="chat-ball-badge">6</span>
+    </div>
+
+    <!-- ===== FLOATING FEEDBACK BALL & WINDOW ===== -->
+    <div class="feedback-ball" id="feedback-ball" onclick="toggleFeedbackWindow()" title="展場填寫回饋表單">
+        <span class="feedback-ball-icon">📝</span>
+    </div>
+
+    <div class="feedback-window" id="feedback-window-floating">
+        <div class="feedback-header" style="background:var(--surface-2); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); flex-shrink:0;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:18px;">📝</span>
+                <span class="serif" style="font-weight:700; color:var(--gold-bright); font-size:15px; letter-spacing:0.05em;">展場回饋表單</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <a href="https://forms.gle/981AWzKihet3Ge396" target="_blank" style="color:var(--gold-bright); text-decoration:none; font-size:11px; border:1px solid var(--border-gold); padding:3px 8px; border-radius:4px; transition:all 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold-bright)'" title="在新分頁開啟表單">🔗 外部開啟</a>
+                <button onclick="toggleFeedbackWindow()" style="background:transparent; border:none; color:var(--text-dim); cursor:pointer; font-size:18px; line-height:1; padding:4px;" title="關閉">✕</button>
+            </div>
+        </div>
+        <div class="feedback-body" style="flex:1; background:#f0e6d0; position:relative; overflow:hidden;">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdikmTy-97saXls3Up26gcC1AFXQBn86fnLi5eJ5XHR0kXt1A/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" style="width:100%; height:100%; border:none;">載入中...</iframe>
+        </div>
     </div>
 
     <div class="chat-window" id="chat-window-floating">
