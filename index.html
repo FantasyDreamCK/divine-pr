@@ -2119,6 +2119,11 @@
 @keyframes profile-copy-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(max-width:620px){.ex-art-flip{top:calc(46dvh - 100px);bottom:auto}.ex-profile-figure{padding-left:12px}}
 @media(prefers-reduced-motion:reduce){#character-profile[open] .ex-profile-figure,#character-profile[open] .ex-profile-copy{animation:none}.ex-art-flip-inner{transition:none}}
+#project-magazine{padding-inline:18px}
+.project-magazine-panel{max-width:1000px;margin:auto;padding:clamp(26px,5vw,54px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;background:linear-gradient(120deg,#321c25,#160e18);border:1px solid var(--border-gold);border-radius:14px}
+.project-magazine-panel h2{font-size:clamp(25px,4vw,42px);color:var(--gold-bright);margin-bottom:8px}
+.project-magazine-panel p{color:var(--text-dim);max-width:38em}
+.project-magazine-panel .btn-primary{min-height:48px;text-align:center}
 .ex-products{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px;margin:auto}
 .ex-products figure{margin:0;padding:18px;text-align:center;background:#241825;border:1px solid var(--border-gold);border-radius:12px}
 .ex-products img{width:100%;height:clamp(150px,34vw,300px);object-fit:contain}
@@ -2166,6 +2171,7 @@
                 <a href="#characters">六位神使</a>
                 <a href="https://yuma1014.github.io/divine-pr/" target="_blank" style="color: var(--gold-bright); font-weight: 600;">🎙️ 配音故事</a>
                 <a href="#features">遊戲特色</a>
+                <a href="#project-magazine">專題簡報</a>
                 <a href="#preview">卡牌預覽</a>
                 <a href="#divination">線上擲筊</a>
                 <a href="#merch">展場周邊</a>
@@ -2463,6 +2469,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="project-magazine" class="section-pad" aria-labelledby="project-magazine-title">
+        <div class="project-magazine-panel">
+            <div>
+                <h2 id="project-magazine-title">專題電子簡報</h2>
+                <p>從學生團隊的角度，看《神明公關》如何把臺灣民間信仰轉化成桌遊，從發想、設計一路做到成果展。</p>
+            </div>
+            <a class="btn-primary" href="https://yuma1014.github.io/divine-pr/神明公關_電子雜誌版.html" target="_blank" rel="noopener noreferrer">開啟電子簡報 <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 
